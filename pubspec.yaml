@@ -7,5 +7,11 @@ homepage:
 environment:
   sdk: ">=2.5.0 <3.0.0"
 
+dependencies:
+  meta:
+  functional_data: ^0.2.0
+
 dev_dependencies:
+  build_runner: ^1.7.0
   dependency_validator: ^1.0.0
+  functional_data_generator: ^0.2.0
