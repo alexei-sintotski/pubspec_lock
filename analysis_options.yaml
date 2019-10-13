@@ -1,6 +1,5 @@
 analyzer:
-  exclude:
-  - lib/src/*.g.dart
+  exclude: *.g.dart
   strong-mode:
     implicit-casts: false
     implicit-dynamic: false
