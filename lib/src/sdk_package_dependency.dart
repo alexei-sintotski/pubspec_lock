@@ -27,15 +27,15 @@ import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 import 'package:pubspec_lock/src/dependency_type.dart';
 
-part 'sdk_dependency.g.dart';
+part 'sdk_package_dependency.g.dart';
 
 // ignore_for_file: annotate_overrides
 
 /// SDK dependency as specified by https://dart.dev/tools/pub/dependencies
 @immutable
 @FunctionalData()
-class SdkDependency extends $SdkDependency {
-  const SdkDependency({
+class SdkPackageDependency extends $SdkPackageDependency {
+  const SdkPackageDependency({
     @required this.package,
     @required this.version,
     @required this.description,
