@@ -1,7 +1,7 @@
 #!/bin/bash -ex
 
-dartanalyzer --fatal-warnings **/*.dart
-pub run dependency_validator --ignore=functional_data_generator
+dartanalyzer --fatal-hints .
+pub run dependency_validator --ignore=functional_data_generator,sum_types_generator
 dartfmt --overwrite --fix --set-exit-if-changed --line-length=120 .
 
 pub run build_runner build --delete-conflicting-outputs
