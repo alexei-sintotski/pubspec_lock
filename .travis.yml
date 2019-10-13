@@ -1,0 +1,5 @@
+language: dart
+script:
+  - dartanalyzer --fatal-warnings **/*.dart
+  - dartfmt --overwrite --fix --set-exit-if-changed --line-length=120 .
+  - pub run dependency_validator

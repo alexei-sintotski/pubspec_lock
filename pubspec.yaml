@@ -6,3 +6,6 @@ homepage:
 
 environment:
   sdk: ">=2.5.0 <3.0.0"
+
+dev_dependencies:
+  dependency_validator: ^1.0.0
