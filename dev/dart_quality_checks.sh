@@ -2,10 +2,9 @@
 
 dartanalyzer --fatal-hints .
 pub run dependency_validator --ignore=functional_data_generator,sum_types_generator
-dartfmt --overwrite --fix --set-exit-if-changed --line-length=120 .
+dev/format_dart_code.sh --set-exit-if-changed
 
-pub run build_runner build --delete-conflicting-outputs
-dartfmt --overwrite --fix --line-length=120 .
+dev/generate_code.sh --delete-conflicting-outputs
 if [ -n "$(git status --porcelain -- **/*.g.dart)" ]; then
   exit 1
 fi
