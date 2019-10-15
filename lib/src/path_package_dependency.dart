@@ -26,6 +26,8 @@
 import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 
+import 'dependency_type.dart';
+
 part 'path_package_dependency.g.dart';
 
 // ignore_for_file: annotate_overrides
@@ -39,6 +41,7 @@ class PathPackageDependency extends $PathPackageDependency {
     @required this.version,
     @required this.path,
     @required this.relative,
+    @required this.type,
   });
 
   final String package;
@@ -46,4 +49,6 @@ class PathPackageDependency extends $PathPackageDependency {
 
   final String path;
   final bool relative;
+
+  final DependencyType type;
 }
