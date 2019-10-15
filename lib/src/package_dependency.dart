@@ -24,11 +24,13 @@
  */
 
 import 'package:meta/meta.dart';
-import 'package:pubspec_lock/src/git_package_dependency.dart';
-import 'package:pubspec_lock/src/hosted_package_dependency.dart';
-import 'package:pubspec_lock/src/path_package_dependency.dart';
-import 'package:pubspec_lock/src/sdk_package_dependency.dart';
 import 'package:sum_types/sum_types.dart';
+
+import 'dependency_type.dart';
+import 'git_package_dependency.dart';
+import 'hosted_package_dependency.dart';
+import 'path_package_dependency.dart';
+import 'sdk_package_dependency.dart';
 
 part 'package_dependency.g.dart';
 
@@ -39,18 +41,25 @@ part 'package_dependency.g.dart';
   Case<GitPackageDependency>(name: 'git'),
   Case<PathPackageDependency>(name: 'path'),
 ])
-mixin _PackageDependency implements _PackageDependencyBase {}
+mixin _PackageDependency implements _PackageDependencyBase {
+  String package() => iswitch(
+        sdk: (d) => d.package,
+        hosted: (d) => d.package,
+        git: (d) => d.package,
+        path: (d) => d.package,
+      );
 
-String packageOfPackageDependency(PackageDependency dep) => dep.iswitch(
-      sdk: (d) => d.package,
-      hosted: (d) => d.package,
-      git: (d) => d.package,
-      path: (d) => d.package,
-    );
+  String version() => iswitch(
+        sdk: (d) => d.version,
+        hosted: (d) => d.version,
+        git: (d) => d.version,
+        path: (d) => d.version,
+      );
 
-String versionOfPackageDependency(PackageDependency dep) => dep.iswitch(
-      sdk: (d) => d.version,
-      hosted: (d) => d.version,
-      git: (d) => d.version,
-      path: (d) => d.version,
-    );
+  DependencyType type() => iswitch(
+        sdk: (d) => d.type,
+        hosted: (d) => d.type,
+        git: (d) => d.type,
+        path: (d) => d.type,
+      );
+}
