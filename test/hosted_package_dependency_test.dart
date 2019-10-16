@@ -48,11 +48,8 @@ void main() {
       test("it produces HostedPackageDependency object", () {
         expect(isHostedDependency(pubspecLock.packages.first), isTrue);
       });
-      test("it produces HostedPackageDependency object with correct name", () {
-        expect(hostedPackageDependency(pubspecLock.packages.first).name, name);
-      });
-      test("it produces HostedPackageDependency object with correct url", () {
-        expect(hostedPackageDependency(pubspecLock.packages.first).url, url);
+      test("it produces HostedPackageDependency object with correct data", () {
+        expect(hostedPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
@@ -75,6 +72,14 @@ packages:
     source: hosted
     version: "$version"
 ''';
+
+const expectedPackageDependency = HostedPackageDependency(
+  package: package,
+  version: version,
+  name: name,
+  url: url,
+  type: DependencyType.transitive,
+);
 
 bool isHostedDependency(PackageDependency dependency) => dependency.iswitch(
       sdk: (d) => false,
