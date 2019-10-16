@@ -23,10 +23,14 @@
  *
  */
 
+import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 
+part 'sdk_dependency.g.dart';
+
 @immutable
-class SdkDependency {
+@FunctionalData()
+class SdkDependency extends $SdkDependency {
   final String sdk;
   final String version;
 
