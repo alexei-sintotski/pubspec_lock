@@ -40,7 +40,10 @@ class SdkPackageDependency extends $SdkPackageDependency {
     @required this.version,
     @required this.description,
     @required this.type,
-  });
+  })  : assert(package != null),
+        assert(version != null),
+        assert(description != null),
+        assert(type != null);
 
   final String package;
   final String version;
