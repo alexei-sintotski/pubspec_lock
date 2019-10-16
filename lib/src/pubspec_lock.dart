@@ -26,7 +26,7 @@
 import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
-import 'internal/loader.dart';
+import 'internal/load_packages.dart';
 import 'package_dependency.dart';
 import 'sdk_dependency.dart';
 
