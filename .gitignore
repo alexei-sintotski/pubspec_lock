@@ -9,3 +9,8 @@ pubspec.lock
 
 # IntelliJ IDEA project
 /.idea
+
+# Test coverage
+.test_coverage.dart
+coverage_badge.svg
+lcov.info
