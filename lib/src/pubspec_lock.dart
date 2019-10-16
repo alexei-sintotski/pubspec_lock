@@ -24,9 +24,11 @@
  */
 
 import 'package:meta/meta.dart';
-import 'package:pubspec_lock/src/sdk_dependency.dart';
+import 'package:yaml/yaml.dart';
 
+import 'internal/loader.dart';
 import 'package_dependency.dart';
+import 'sdk_dependency.dart';
 
 /// Representation of data stored in pubspec.lock with parser from and formatter to YAML
 @immutable
@@ -36,7 +38,13 @@ class PubspecLock {
 
   const PubspecLock({this.sdks = const {}, this.packages = const {}});
 
-  factory PubspecLock.loadFromYamlString(String content) => PubspecLock();
+  factory PubspecLock.loadFromYamlString(String content) {
+    assert(content != null);
+    assert(content.trim().isNotEmpty);
+
+    final yaml = loadYaml(content) as YamlMap;
+    return PubspecLock(packages: loadPackages(yaml));
+  }
 
   String toYaml() => null;
 }
