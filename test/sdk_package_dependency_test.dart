@@ -48,8 +48,8 @@ void main() {
       test("it produces SdkPackageDependency object", () {
         expect(isSdkDependency(pubspecLock.packages.first), isTrue);
       });
-      test("it produces SdkPackageDependency object with correct description", () {
-        expect(sdkPackageDependency(pubspecLock.packages.first).description, description);
+      test("it produces SdkPackageDependency object with correct data", () {
+        expect(sdkPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
@@ -69,6 +69,13 @@ packages:
     source: sdk
     version: "$version"
 ''';
+
+const expectedPackageDependency = SdkPackageDependency(
+  package: package,
+  version: version,
+  description: description,
+  type: DependencyType.direct,
+);
 
 bool isSdkDependency(PackageDependency dependency) => dependency.iswitch(
       sdk: (d) => true,

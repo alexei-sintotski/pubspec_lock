@@ -48,17 +48,8 @@ void main() {
       test("it produces GitPackageDependency object", () {
         expect(isGitDependency(pubspecLock.packages.first), isTrue);
       });
-      test("it produces GitPackageDependency object with correct ref", () {
-        expect(gitPackageDependency(pubspecLock.packages.first).ref, ref);
-      });
-      test("it produces GitPackageDependency object with correct url", () {
-        expect(gitPackageDependency(pubspecLock.packages.first).url, url);
-      });
-      test("it produces GitPackageDependency object with correct path", () {
-        expect(gitPackageDependency(pubspecLock.packages.first).path, path);
-      });
-      test("it produces GitPackageDependency object with resolved ref", () {
-        expect(gitPackageDependency(pubspecLock.packages.first).resolvedRef, resolvedRef);
+      test("it produces GitPackageDependency object with correct data", () {
+        expect(gitPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
@@ -85,6 +76,16 @@ packages:
     source: git
     version: "$version"
 ''';
+
+const expectedPackageDependency = GitPackageDependency(
+  package: package,
+  version: version,
+  ref: ref,
+  url: url,
+  path: path,
+  resolvedRef: resolvedRef,
+  type: DependencyType.direct,
+);
 
 bool isGitDependency(PackageDependency dependency) => dependency.iswitch(
       sdk: (d) => false,

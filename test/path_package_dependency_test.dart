@@ -36,11 +36,20 @@ void main() {
       test("it produces exactly one dependency object", () {
         expect(pubspecLock.packages.length, 1);
       });
+      test("it produces PackageDependency with correct package name", () {
+        expect(pubspecLock.packages.first.package(), package);
+      });
+      test("it produces PackageDependency with correct version", () {
+        expect(pubspecLock.packages.first.version(), version);
+      });
+      test("it produces PackageDependency of correct type", () {
+        expect(pubspecLock.packages.first.type(), DependencyType.development);
+      });
       test("it produces PathPackageDependency object", () {
         expect(isPathDependency(pubspecLock.packages.first), isTrue);
       });
       test("it produces PathPackageDependency object with correct data", () {
-        expect(pathPackageDependency(pubspecLock.packages.first), expectedPathPackageDependency);
+        expect(pathPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
@@ -64,7 +73,7 @@ packages:
     version: "$version"
 ''';
 
-const expectedPathPackageDependency = PathPackageDependency(
+const expectedPackageDependency = PathPackageDependency(
   package: package,
   version: version,
   path: path,
