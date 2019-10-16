@@ -24,13 +24,14 @@
  */
 
 import 'package:meta/meta.dart';
-import 'package:pubspec_lock/src/dependency_type.dart';
-import 'package:pubspec_lock/src/git_package_dependency.dart';
-import 'package:pubspec_lock/src/hosted_package_dependency.dart';
-import 'package:pubspec_lock/src/sdk_package_dependency.dart';
 import 'package:yaml/yaml.dart';
 
+import '../dependency_type.dart';
+import '../git_package_dependency.dart';
+import '../hosted_package_dependency.dart';
 import '../package_dependency.dart';
+import '../path_package_dependency.dart';
+import '../sdk_package_dependency.dart';
 
 Iterable<PackageDependency> loadPackages(YamlMap yaml) => yaml.containsKey(_Tokens.packages)
     ? (yaml[_Tokens.packages] as YamlMap)
@@ -46,6 +47,8 @@ PackageDependency loadPackageDependency({@required package, @required YamlMap de
     return PackageDependency.hosted(loadHostedPackageDependency(package: package, definition: definition));
   else if (source == _Tokens.git)
     return PackageDependency.git(loadGitPackageDependency(package: package, definition: definition));
+  else if (source == _Tokens.path)
+    return PackageDependency.path(loadPathPackageDependency(package: package, definition: definition));
   throw AssertionError("Unknown package source: $source");
 }
 
@@ -81,6 +84,17 @@ GitPackageDependency loadGitPackageDependency({@required package, @required Yaml
   );
 }
 
+PathPackageDependency loadPathPackageDependency({@required package, @required YamlMap definition}) {
+  final description = definition[_Tokens.description] as YamlMap;
+  return PathPackageDependency(
+    package: package,
+    version: definition[_Tokens.version] as String,
+    path: description[_Tokens.path] as String,
+    relative: description[_Tokens.relative] as bool,
+    type: _packageDependencyTypeMap[definition[_Tokens.dependency] as String],
+  );
+}
+
 class _Tokens {
   static const packages = 'packages';
   static const version = 'version';
@@ -98,6 +112,7 @@ class _Tokens {
   static const url = 'url';
   static const ref = 'ref';
   static const resolvedRef = 'resolved-ref';
+  static const relative = 'relative';
 }
 
 const _packageDependencyTypeMap = <String, DependencyType>{
