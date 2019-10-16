@@ -23,29 +23,13 @@
  *
  */
 
-import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
-import 'internal/load_packages.dart';
-import 'internal/load_sdks.dart';
-import 'package_dependency.dart';
-import 'sdk_dependency.dart';
+import '../sdk_dependency.dart';
 
-/// Representation of data stored in pubspec.lock with parser from and formatter to YAML
-@immutable
-class PubspecLock {
-  final Iterable<SdkDependency> sdks;
-  final Iterable<PackageDependency> packages;
+Iterable<SdkDependency> loadSdks(YamlMap yaml) => yaml.containsKey(_sdksKeyword)
+    ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key, version: entry.value))
+    : [];
 
-  const PubspecLock({this.sdks = const {}, this.packages = const {}});
-
-  factory PubspecLock.loadFromYamlString(String content) {
-    assert(content != null);
-    assert(content.trim().isNotEmpty);
-
-    final yaml = loadYaml(content) as YamlMap;
-    return PubspecLock(packages: loadPackages(yaml), sdks: loadSdks(yaml));
-  }
-
-  String toYaml() => null;
-}
+const _sdksKeyword = 'sdks';
+YamlMap _sdksYamlMap(YamlMap yaml) => yaml[_sdksKeyword];
