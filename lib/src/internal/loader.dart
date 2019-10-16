@@ -25,6 +25,7 @@
 
 import 'package:meta/meta.dart';
 import 'package:pubspec_lock/src/dependency_type.dart';
+import 'package:pubspec_lock/src/git_package_dependency.dart';
 import 'package:pubspec_lock/src/hosted_package_dependency.dart';
 import 'package:pubspec_lock/src/sdk_package_dependency.dart';
 import 'package:yaml/yaml.dart';
@@ -43,6 +44,8 @@ PackageDependency loadPackageDependency({@required package, @required YamlMap de
     return PackageDependency.sdk(loadSdkPackageDependency(package: package, definition: definition));
   else if (source == _Tokens.hosted)
     return PackageDependency.hosted(loadHostedPackageDependency(package: package, definition: definition));
+  else if (source == _Tokens.git)
+    return PackageDependency.git(loadGitPackageDependency(package: package, definition: definition));
   throw AssertionError("Unknown package source: $source");
 }
 
@@ -65,6 +68,19 @@ HostedPackageDependency loadHostedPackageDependency({@required package, @require
   );
 }
 
+GitPackageDependency loadGitPackageDependency({@required package, @required YamlMap definition}) {
+  final description = definition[_Tokens.description] as YamlMap;
+  return GitPackageDependency(
+    package: package,
+    version: definition[_Tokens.version] as String,
+    ref: description[_Tokens.ref] as String,
+    url: description[_Tokens.url] as String,
+    path: description[_Tokens.path] as String,
+    resolvedRef: description[_Tokens.resolvedRef] as String,
+    type: _packageDependencyTypeMap[definition[_Tokens.dependency] as String],
+  );
+}
+
 class _Tokens {
   static const packages = 'packages';
   static const version = 'version';
@@ -80,6 +96,8 @@ class _Tokens {
   static const path = 'path';
   static const name = 'name';
   static const url = 'url';
+  static const ref = 'ref';
+  static const resolvedRef = 'resolved-ref';
 }
 
 const _packageDependencyTypeMap = <String, DependencyType>{
