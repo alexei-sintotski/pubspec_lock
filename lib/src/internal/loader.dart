@@ -42,13 +42,7 @@ PackageDependency loadPackageDependency({@required package, @required YamlMap de
   if (source == _Tokens.sdk)
     return PackageDependency.sdk(loadSdkPackageDependency(package: package, definition: definition));
   else if (source == _Tokens.hosted)
-    return PackageDependency.hosted(HostedPackageDependency(
-      package: '',
-      version: '',
-      name: '',
-      url: '',
-      type: DependencyType.direct,
-    ));
+    return PackageDependency.hosted(loadHostedPackageDependency(package: package, definition: definition));
   throw AssertionError("Unknown package source: $source");
 }
 
@@ -59,6 +53,17 @@ SdkPackageDependency loadSdkPackageDependency({@required package, @required Yaml
       description: definition[_Tokens.description] as String,
       type: _packageDependencyTypeMap[definition[_Tokens.dependency] as String],
     );
+
+HostedPackageDependency loadHostedPackageDependency({@required package, @required YamlMap definition}) {
+  final description = definition[_Tokens.description] as YamlMap;
+  return HostedPackageDependency(
+    package: package,
+    version: definition[_Tokens.version] as String,
+    name: description[_Tokens.name] as String,
+    url: description[_Tokens.url] as String,
+    type: _packageDependencyTypeMap[definition[_Tokens.dependency] as String],
+  );
+}
 
 class _Tokens {
   static const packages = 'packages';
@@ -73,6 +78,8 @@ class _Tokens {
   static const hosted = 'hosted';
   static const git = 'git';
   static const path = 'path';
+  static const name = 'name';
+  static const url = 'url';
 }
 
 const _packageDependencyTypeMap = <String, DependencyType>{
