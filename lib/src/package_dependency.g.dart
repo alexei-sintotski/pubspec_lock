@@ -6,36 +6,8 @@ part of 'package_dependency.dart';
 // SumTypesGenerator
 // **************************************************************************
 
-abstract class _PackageDependencyBase {
-  __T iswitch<__T>({
-    @required __T Function(SdkPackageDependency) sdk,
-    @required __T Function(HostedPackageDependency) hosted,
-    @required __T Function(GitPackageDependency) git,
-    @required __T Function(PathPackageDependency) path,
-  });
-  __T iswitcho<__T>({
-    __T Function(SdkPackageDependency) sdk,
-    __T Function(HostedPackageDependency) hosted,
-    __T Function(GitPackageDependency) git,
-    __T Function(PathPackageDependency) path,
-    @required __T Function() otherwise,
-  });
-}
-
-class PackageDependency with _PackageDependency implements _PackageDependencyBase {
-  const PackageDependency.sdk(
-    SdkPackageDependency sdk,
-  ) : this._unsafe(sdk: sdk);
-  const PackageDependency.hosted(
-    HostedPackageDependency hosted,
-  ) : this._unsafe(hosted: hosted);
-  const PackageDependency.git(
-    GitPackageDependency git,
-  ) : this._unsafe(git: git);
-  const PackageDependency.path(
-    PathPackageDependency path,
-  ) : this._unsafe(path: path);
-  const PackageDependency._unsafe({
+abstract class _$PackageDependency {
+  const _$PackageDependency({
     this.sdk,
     this.hosted,
     this.git,
@@ -44,25 +16,24 @@ class PackageDependency with _PackageDependency implements _PackageDependencyBas
             sdk == null && hosted != null && git == null && path == null ||
             sdk == null && hosted == null && git != null && path == null ||
             sdk == null && hosted == null && git == null && path != null);
-  static PackageDependency load<__T extends PackageDependencyRecordBase<__T>>(
-    __T rec,
+  static PackageDependency load<$T extends PackageDependencyRecordBase<$T>>(
+    $T rec,
   ) {
-    if (!(rec.sdk != null && rec.hosted == null && rec.git == null && rec.path == null ||
-        rec.sdk == null && rec.hosted != null && rec.git == null && rec.path == null ||
-        rec.sdk == null && rec.hosted == null && rec.git != null && rec.path == null ||
-        rec.sdk == null && rec.hosted == null && rec.git == null && rec.path != null)) {
+    if (rec.sdk != null && rec.hosted == null && rec.git == null && rec.path == null) {
+      return PackageDependency.sdk(rec.sdk);
+    } else if (rec.sdk == null && rec.hosted != null && rec.git == null && rec.path == null) {
+      return PackageDependency.hosted(rec.hosted);
+    } else if (rec.sdk == null && rec.hosted == null && rec.git != null && rec.path == null) {
+      return PackageDependency.git(rec.git);
+    } else if (rec.sdk == null && rec.hosted == null && rec.git == null && rec.path != null) {
+      return PackageDependency.path(rec.path);
+    } else {
       throw Exception("Cannot select a $PackageDependency case given $rec");
     }
-    return PackageDependency._unsafe(
-      sdk: rec.sdk,
-      hosted: rec.hosted,
-      git: rec.git,
-      path: rec.path,
-    );
   }
 
-  __T dump<__T>(
-    __T Function({
+  $T dump<$T>(
+    $T Function({
       SdkPackageDependency sdk,
       HostedPackageDependency hosted,
       GitPackageDependency git,
@@ -78,12 +49,11 @@ class PackageDependency with _PackageDependency implements _PackageDependencyBas
     );
   }
 
-  @override
-  __T iswitch<__T>({
-    @required __T Function(SdkPackageDependency) sdk,
-    @required __T Function(HostedPackageDependency) hosted,
-    @required __T Function(GitPackageDependency) git,
-    @required __T Function(PathPackageDependency) path,
+  $T iswitch<$T>({
+    @required $T Function(SdkPackageDependency) sdk,
+    @required $T Function(HostedPackageDependency) hosted,
+    @required $T Function(GitPackageDependency) git,
+    @required $T Function(PathPackageDependency) path,
   }) {
     if (this.sdk != null) {
       return sdk(this.sdk);
@@ -98,15 +68,14 @@ class PackageDependency with _PackageDependency implements _PackageDependencyBas
     }
   }
 
-  @override
-  __T iswitcho<__T>({
-    __T Function(SdkPackageDependency) sdk,
-    __T Function(HostedPackageDependency) hosted,
-    __T Function(GitPackageDependency) git,
-    __T Function(PathPackageDependency) path,
-    @required __T Function() otherwise,
+  $T iswitcho<$T>({
+    $T Function(SdkPackageDependency) sdk,
+    $T Function(HostedPackageDependency) hosted,
+    $T Function(GitPackageDependency) git,
+    $T Function(PathPackageDependency) path,
+    @required $T Function() otherwise,
   }) {
-    __T _otherwise(Object _) => otherwise();
+    $T _otherwise(Object _) => otherwise();
     return iswitch(
       sdk: sdk ?? _otherwise,
       hosted: hosted ?? _otherwise,

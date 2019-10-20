@@ -35,13 +35,13 @@ import 'sdk_package_dependency.dart';
 part 'package_dependency.g.dart';
 
 /// Dependency sources as specified by https://dart.dev/tools/pub/dependencies
-@SumType([
-  Case<SdkPackageDependency>(name: 'sdk'),
-  Case<HostedPackageDependency>(name: 'hosted'),
-  Case<GitPackageDependency>(name: 'git'),
-  Case<PathPackageDependency>(name: 'path'),
-])
-mixin _PackageDependency implements _PackageDependencyBase {
+@SumType()
+class PackageDependency extends _$PackageDependency {
+  const PackageDependency.sdk(SdkPackageDependency sdk) : super(sdk: sdk);
+  const PackageDependency.hosted(HostedPackageDependency hosted) : super(hosted: hosted);
+  const PackageDependency.git(GitPackageDependency git) : super(git: git);
+  const PackageDependency.path(PathPackageDependency path) : super(path: path);
+
   String package() => iswitch(
         sdk: (d) => d.package,
         hosted: (d) => d.package,
