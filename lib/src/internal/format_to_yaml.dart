@@ -24,49 +24,38 @@ String _formatSdkDependencies(Iterable<SdkDependency> sdks) =>
 String _formatPackagesDependencies(Iterable<PackageDependency> packages) =>
     "\npackages:${packages.map(_formatPackage).join()}";
 
-String _formatPackage(PackageDependency package) => package.iswitcho(
-      sdk: (p) => _formatSdkPackageDependency(p),
-      hosted: (p) => _formatHostedPackageDependency(p),
-      git: (p) => _formatGitPackageDependency(p),
-      path: (p) => _formatPathPackageDependency(p),
-      otherwise: () => '',
-    );
+String _formatPackage(PackageDependency package) => '''
+\n  ${package.package()}:
+    dependency: ${_formatLiteral(_convertDepTypeToString(package.type()))}
+    description:${package.iswitch(
+      sdk: (p) => _formatSdkPackageDescription(p),
+      hosted: (p) => _formatHostedPackageDescription(p),
+      git: (p) => _formatGitPackageDescription(p),
+      path: (p) => _formatPathPackageDescription(p),
+    )}
+    source: ${package.iswitch(
+      sdk: (p) => 'sdk',
+      hosted: (p) => 'hosted',
+      git: (p) => 'git',
+      path: (p) => 'path',
+    )}
+    version: \"${package.version()}\"''';
 
-String _formatSdkPackageDependency(SdkPackageDependency package) => '''
-\n  ${package.package}:
-    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
-    description: ${package.description}
-    source: sdk
-    version: \"${package.version}\"''';
+String _formatSdkPackageDescription(SdkPackageDependency package) => " ${package.description}";
 
-String _formatHostedPackageDependency(HostedPackageDependency package) => '''
-\n  ${package.package}:
-    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
-    description:
-      name: ${package.name}
-      url: \"${package.url}\"
-    source: hosted
-    version: \"${package.version}\"''';
+String _formatHostedPackageDescription(HostedPackageDependency package) => '''
+\n      name: ${package.name}
+      url: \"${package.url}\"''';
 
-String _formatGitPackageDependency(GitPackageDependency package) => '''
-\n  ${package.package}:
-    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
-    description:
-      path: \"${package.path}\"
+String _formatGitPackageDescription(GitPackageDependency package) => '''
+\n      path: \"${package.path}\"
       ref: ${_formatLiteral(package.ref)}
       resolved-ref: \"${package.resolvedRef}\"
-      url: \"${package.url}\"
-    source: git
-    version: \"${package.version}\"''';
+      url: \"${package.url}\"''';
 
-String _formatPathPackageDependency(PathPackageDependency package) => '''
-\n  ${package.package}:
-    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
-    description:
-      path: \"${package.path}\"
-      relative: ${package.relative}
-    source: path
-    version: \"${package.version}\"''';
+String _formatPathPackageDescription(PathPackageDependency package) => '''
+\n      path: \"${package.path}\"
+      relative: ${package.relative}''';
 
 String _convertDepTypeToString(DependencyType dependencyType) {
   switch (dependencyType) {
