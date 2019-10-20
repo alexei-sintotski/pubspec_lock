@@ -77,16 +77,12 @@ const expectedPackageDependency = SdkPackageDependency(
   type: DependencyType.direct,
 );
 
-bool isSdkDependency(PackageDependency dependency) => dependency.iswitch(
+bool isSdkDependency(PackageDependency dependency) => dependency.iswitcho(
       sdk: (d) => true,
-      hosted: (d) => false,
-      git: (d) => false,
-      path: (d) => false,
+      otherwise: () => false,
     );
 
-SdkPackageDependency sdkPackageDependency(PackageDependency dependency) => dependency.iswitch(
+SdkPackageDependency sdkPackageDependency(PackageDependency dependency) => dependency.iswitcho(
       sdk: (d) => d,
-      hosted: (d) => null,
-      git: (d) => null,
-      path: (d) => null,
+      otherwise: () => null,
     );

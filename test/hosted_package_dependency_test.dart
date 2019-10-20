@@ -81,16 +81,12 @@ const expectedPackageDependency = HostedPackageDependency(
   type: DependencyType.transitive,
 );
 
-bool isHostedDependency(PackageDependency dependency) => dependency.iswitch(
-      sdk: (d) => false,
+bool isHostedDependency(PackageDependency dependency) => dependency.iswitcho(
       hosted: (d) => true,
-      git: (d) => false,
-      path: (d) => false,
+      otherwise: () => false,
     );
 
-HostedPackageDependency hostedPackageDependency(PackageDependency dependency) => dependency.iswitch(
-      sdk: (d) => null,
+HostedPackageDependency hostedPackageDependency(PackageDependency dependency) => dependency.iswitcho(
       hosted: (d) => d,
-      git: (d) => null,
-      path: (d) => null,
+      otherwise: () => null,
     );
