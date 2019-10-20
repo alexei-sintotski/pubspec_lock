@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
 import '../dependency_type.dart';
+import '../hosted_package_dependency.dart';
 import '../package_dependency.dart';
 import '../sdk_dependency.dart';
 import '../sdk_package_dependency.dart';
@@ -22,15 +23,25 @@ String _formatPackagesDependencies(Iterable<PackageDependency> packages) =>
     "\npackages:${packages.map(_formatPackage).join()}";
 
 String _formatPackage(PackageDependency package) => package.iswitcho(
-      sdk: (p) => _formatSdkPackage(p),
+      sdk: (p) => _formatSdkPackageDependency(p),
+      hosted: (p) => _formatHostedPackageDependency(p),
       otherwise: () => '',
     );
 
-String _formatSdkPackage(SdkPackageDependency package) => '''
+String _formatSdkPackageDependency(SdkPackageDependency package) => '''
 \n  ${package.package}:
     dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
     description: ${package.description}
     source: sdk
+    version: \"${package.version}\"''';
+
+String _formatHostedPackageDependency(HostedPackageDependency package) => '''
+\n  ${package.package}:
+    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
+    description:
+      name: ${package.name}
+      url: \"${package.url}\"
+    source: hosted
     version: \"${package.version}\"''';
 
 String _convertDepTypeToString(DependencyType dependencyType) {
