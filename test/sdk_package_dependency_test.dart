@@ -53,6 +53,16 @@ void main() {
       });
     });
   });
+
+  group("$PubspecLock.toYaml", () {
+    group("given given pubspec.lock with single sdk dependency", () {
+      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
+      final yamlOutput = pubspecLock.toYaml();
+      test("it produces equivalent YAML content", () {
+        expect(yamlOutput, pubspecLockWithSdkDependency);
+      });
+    });
+  });
 }
 
 const package = 'flutter';
