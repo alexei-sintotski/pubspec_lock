@@ -1,6 +1,7 @@
 import 'package:meta/meta.dart';
 
 import '../dependency_type.dart';
+import '../git_package_dependency.dart';
 import '../hosted_package_dependency.dart';
 import '../package_dependency.dart';
 import '../sdk_dependency.dart';
@@ -25,6 +26,7 @@ String _formatPackagesDependencies(Iterable<PackageDependency> packages) =>
 String _formatPackage(PackageDependency package) => package.iswitcho(
       sdk: (p) => _formatSdkPackageDependency(p),
       hosted: (p) => _formatHostedPackageDependency(p),
+      git: (p) => _formatGitPackageDependency(p),
       otherwise: () => '',
     );
 
@@ -42,6 +44,17 @@ String _formatHostedPackageDependency(HostedPackageDependency package) => '''
       name: ${package.name}
       url: \"${package.url}\"
     source: hosted
+    version: \"${package.version}\"''';
+
+String _formatGitPackageDependency(GitPackageDependency package) => '''
+\n  ${package.package}:
+    dependency: ${_formatLiteral(_convertDepTypeToString(package.type))}
+    description:
+      path: \"${package.path}\"
+      ref: ${_formatLiteral(package.ref)}
+      resolved-ref: \"${package.resolvedRef}\"
+      url: \"${package.url}\"
+    source: git
     version: \"${package.version}\"''';
 
 String _convertDepTypeToString(DependencyType dependencyType) {

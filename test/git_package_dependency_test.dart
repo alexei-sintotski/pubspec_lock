@@ -53,6 +53,16 @@ void main() {
       });
     });
   });
+
+  group("$PubspecLock.toYaml", () {
+    group("given pubspec.lock with single git dependency", () {
+      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithGitDependency);
+      final yamlOutput = pubspecLock.toYaml();
+      test("it produces equivalent output", () {
+        expect(yamlOutput, pubspecLockWithGitDependency);
+      });
+    });
+  });
 }
 
 const package = 'flutter_html';
