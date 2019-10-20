@@ -23,17 +23,22 @@
  *
  */
 
+import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
 import 'internal/load_packages.dart';
 import 'internal/load_sdks.dart';
+import 'internal/format_to_yaml.dart';
 import 'package_dependency.dart';
 import 'sdk_dependency.dart';
 
+part 'pubspec_lock.g.dart';
+
 /// Representation of data stored in pubspec.lock with parser from and formatter to YAML
 @immutable
-class PubspecLock {
+@FunctionalData()
+class PubspecLock extends $PubspecLock {
   final Iterable<SdkDependency> sdks;
   final Iterable<PackageDependency> packages;
 
@@ -47,5 +52,5 @@ class PubspecLock {
     return PubspecLock(packages: loadPackages(yaml), sdks: loadSdks(yaml));
   }
 
-  String toYaml() => null;
+  String toYaml() => formatToYaml(sdks: sdks, packages: packages);
 }
