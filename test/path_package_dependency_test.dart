@@ -53,6 +53,16 @@ void main() {
       });
     });
   });
+
+  group("$PubspecLock.toYaml", () {
+    group("given pubspec.lock with single path dependency", () {
+      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithPathDependency);
+      final yamlOutput = pubspecLock.toYaml();
+      test("it produces equivalent output", () {
+        expect(yamlOutput, pubspecLockWithPathDependency);
+      });
+    });
+  });
 }
 
 const package = 'oth_backdrop';
