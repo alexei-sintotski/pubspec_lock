@@ -21,8 +21,12 @@ String formatToYaml({
 String _formatSdkDependencies(Iterable<SdkDependency> sdks) =>
     "\nsdks:${sdks.map((sdk) => "\n  ${sdk.sdk}: \"${sdk.version}\"").join()}";
 
-String _formatPackagesDependencies(Iterable<PackageDependency> packages) =>
-    "\npackages:${packages.map(_formatPackage).join()}";
+String _formatPackagesDependencies(Iterable<PackageDependency> packages) {
+  return "\npackages:${_sortPackagesAlphabetically(packages).map(_formatPackage).join()}";
+}
+
+List<PackageDependency> _sortPackagesAlphabetically(Iterable<PackageDependency> packages) =>
+    packages.toList()..sort((p1, p2) => p1.package().compareTo(p2.package()));
 
 String _formatPackage(PackageDependency package) => '''
 \n  ${package.package()}:
