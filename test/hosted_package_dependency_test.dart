@@ -53,6 +53,16 @@ void main() {
       });
     });
   });
+
+  group("$PubspecLock.toYaml", () {
+    group("given pubspec.lock with single hosted dependency", () {
+      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithHostedDependency);
+      final yamlOutput = pubspecLock.toYaml();
+      test("it produces equivalent YAML ouptut", () {
+        expect(yamlOutput, pubspecLockWithHostedDependency);
+      });
+    });
+  });
 }
 
 const package = 'analyzer';
