@@ -46,6 +46,16 @@ void main() {
       });
     });
   });
+
+  group("$PubspecLock.toYaml", () {
+    group("given given pubspec.lock with SDK dependency", () {
+      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
+      final output = pubspecLock.toYaml();
+      test("it produces equivalent YAML content", () {
+        expect(output, pubspecLockWithSdkDependency);
+      });
+    });
+  });
 }
 
 const pubspecLockWithSdkDependency = '''
