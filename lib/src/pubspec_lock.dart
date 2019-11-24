@@ -27,15 +27,19 @@ import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
+import 'internal/format_to_yaml.dart';
 import 'internal/load_packages.dart';
 import 'internal/load_sdks.dart';
-import 'internal/format_to_yaml.dart';
 import 'package_dependency.dart';
 import 'sdk_dependency.dart';
 
 part 'pubspec_lock.g.dart';
 
-/// Representation of data stored in pubspec.lock with parser from and formatter to YAML
+/// PubspecLock is a data type representing data stored in pubspec.lock files.
+/// It provides the following facilities:
+/// - Parser from pubspec.lock YAML string
+/// - Formatter to pubspec.lock YAML string
+/// - https://pub.dev/packages/functional_data is used to provide data type facilities
 @immutable
 @FunctionalData()
 class PubspecLock extends $PubspecLock {
