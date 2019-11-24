@@ -1,9 +1,10 @@
-## [1.0.1] - 2019-11-24
+## [1.0.2] - 2019-11-24
+* README.md readability is improved
 
+## [1.0.1] - 2019-11-24
 * Fixed quality issues reported by pub.dev
 
 ## [1.0.0] - 2019-11-24
-
 * PubspecLock is a data type representing data stored in pubspec.lock files.
 * Provides parser of pubspec.lock YAML string
 * Provides formatter to pubspec.lock YAML string
