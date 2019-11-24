@@ -11,3 +11,5 @@ dev/generate_code.sh --delete-conflicting-outputs
 if [ -n "$(git status --porcelain -- **/*.g.dart)" ]; then
   exit 1
 fi
+
+pub publish --dry-run
