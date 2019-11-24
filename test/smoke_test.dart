@@ -29,24 +29,25 @@ import 'package:pubspec_lock/src/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 void main() {
-  final realisticContent = File("${gitRepoRoot()}/pubspec.lock").readAsStringSync();
+  final realisticContent = File('${gitRepoRoot()}/pubspec.lock').readAsStringSync();
 
-  group("$PubspecLock().loadFromYamlString", () {
-    group("given realistic pubspec.lock content", () {
-      test("it does not crash", () {
+  group('$PubspecLock().loadFromYamlString', () {
+    group('given realistic pubspec.lock content', () {
+      test('it does not crash', () {
         PubspecLock.loadFromYamlString(realisticContent);
       });
     });
   });
 
-  group("$PubspecLock.toYaml", () {
-    group("given realistic pubspec.lock content", () {
+  group('$PubspecLock.toYaml', () {
+    group('given realistic pubspec.lock content', () {
       final pubspecLock = PubspecLock.loadFromYamlString(realisticContent);
-      test("it produces equivalent YAML content", () {
+      test('it produces equivalent YAML content', () {
         expect(pubspecLock.toYaml(), realisticContent);
       });
     });
   });
 }
 
+// ignore: avoid_as
 String gitRepoRoot() => (Process.runSync('git', ['rev-parse', '--show-toplevel']).stdout as String).trim();

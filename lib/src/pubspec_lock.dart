@@ -35,6 +35,8 @@ import 'sdk_dependency.dart';
 
 part 'pubspec_lock.g.dart';
 
+// ignore_for_file: annotate_overrides
+
 /// PubspecLock is a data type representing data stored in pubspec.lock files.
 /// It provides the following facilities:
 /// - Parser from pubspec.lock YAML string
@@ -43,18 +45,19 @@ part 'pubspec_lock.g.dart';
 @immutable
 @FunctionalData()
 class PubspecLock extends $PubspecLock {
-  final Iterable<SdkDependency> sdks;
-  final Iterable<PackageDependency> packages;
-
   const PubspecLock({this.sdks = const {}, this.packages = const {}});
 
   factory PubspecLock.loadFromYamlString(String content) {
-    assert(content != null);
-    assert(content.trim().isNotEmpty);
+    assert(content != null, 'content must not be null');
+    assert(content.trim().isNotEmpty, 'content must not be empty');
 
+    // ignore: avoid_as
     final yaml = loadYaml(content) as YamlMap;
     return PubspecLock(packages: loadPackages(yaml), sdks: loadSdks(yaml));
   }
+
+  final Iterable<SdkDependency> sdks;
+  final Iterable<PackageDependency> packages;
 
   String toYaml() => formatToYaml(sdks: sdks, packages: packages);
 }

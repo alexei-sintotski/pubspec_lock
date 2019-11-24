@@ -30,35 +30,35 @@ import 'package:pubspec_lock/src/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group("$PubspecLock.loadFromYamlString", () {
-    group("given pubspec.lock with single hosted dependency", () {
+  group('$PubspecLock.loadFromYamlString', () {
+    group('given pubspec.lock with single hosted dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithHostedDependency);
-      test("it produces exactly one dependency object", () {
+      test('it produces exactly one dependency object', () {
         expect(pubspecLock.packages.length, 1);
       });
-      test("it produces PackageDependency with correct package name", () {
+      test('it produces PackageDependency with correct package name', () {
         expect(pubspecLock.packages.first.package(), package);
       });
-      test("it produces PackageDependency with correct version", () {
+      test('it produces PackageDependency with correct version', () {
         expect(pubspecLock.packages.first.version(), version);
       });
-      test("it produces PackageDependency of correct type", () {
+      test('it produces PackageDependency of correct type', () {
         expect(pubspecLock.packages.first.type(), DependencyType.transitive);
       });
-      test("it produces HostedPackageDependency object", () {
+      test('it produces HostedPackageDependency object', () {
         expect(isHostedDependency(pubspecLock.packages.first), isTrue);
       });
-      test("it produces HostedPackageDependency object with correct data", () {
+      test('it produces HostedPackageDependency object with correct data', () {
         expect(hostedPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
 
-  group("$PubspecLock.toYaml", () {
-    group("given pubspec.lock with single hosted dependency", () {
+  group('$PubspecLock.toYaml', () {
+    group('given pubspec.lock with single hosted dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithHostedDependency);
       final yamlOutput = pubspecLock.toYaml();
-      test("it produces equivalent YAML ouptut", () {
+      test('it produces equivalent YAML ouptut', () {
         expect(yamlOutput, pubspecLockWithHostedDependency);
       });
     });
