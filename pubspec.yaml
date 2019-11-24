@@ -1,8 +1,8 @@
 name: pubspec_lock
-description: Dart library to access content of pubpec.lock files
-version: 0.0.1
-author: Alexei Sintotski
-homepage:
+description: Dart library to access and manipulate content of pubpec.lock files
+version: 1.0.0
+author: Alexei Sintotski <alexei.sintotski@gmail.com>
+homepage: https://github.com/alexei-sintotski/pubspec_lock
 
 environment:
   sdk: ">=2.5.0 <3.0.0"
