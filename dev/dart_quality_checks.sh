@@ -1,6 +1,6 @@
 #!/bin/bash -ex
 
-dart example/bin/example.dart
+dart example/main.dart
 
 dartanalyzer --fatal-hints .
 pub run test
