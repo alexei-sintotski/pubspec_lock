@@ -1,5 +1,7 @@
 #!/bin/bash -ex
 
+dart example/bin/example.dart
+
 dartanalyzer --fatal-hints .
 pub run test
 pub run dependency_validator --ignore=functional_data_generator,sum_types_generator,test_coverage
