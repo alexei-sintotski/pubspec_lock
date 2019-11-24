@@ -28,38 +28,38 @@ import 'package:pubspec_lock/src/sdk_dependency.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group("$PubspecLock.loadFromYamlString", () {
-    group("given pubspec.lock with SDK dependency", () {
+  group('$PubspecLock.loadFromYamlString', () {
+    group('given pubspec.lock with SDK dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
-      test("it provides a single SDK dependency object", () {
+      test('it provides a single SDK dependency object', () {
         expect(pubspecLock.sdks.length, 1);
       });
-      test("it provides a correct SDK dependency object", () {
+      test('it provides a correct SDK dependency object', () {
         expect(pubspecLock.sdks.first, sdkDependencyReference);
       });
     });
 
-    group("given pubspec.lock without sdk dependencies", () {
+    group('given pubspec.lock without sdk dependencies', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithoutSdkDependencies);
-      test("it provides no SDK dependencies", () {
+      test('it provides no SDK dependencies', () {
         expect(pubspecLock.sdks, isEmpty);
       });
     });
   });
 
-  group("$PubspecLock.toYaml", () {
-    group("given given pubspec.lock with SDK dependency", () {
+  group('$PubspecLock.toYaml', () {
+    group('given given pubspec.lock with SDK dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
       final yamlOutput = pubspecLock.toYaml();
-      test("it produces equivalent YAML content", () {
+      test('it produces equivalent YAML content', () {
         expect(yamlOutput, pubspecLockWithSdkDependency);
       });
     });
 
-    group("given pubspec.lock with multiple SDK dependencies", () {
+    group('given pubspec.lock with multiple SDK dependencies', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithTwoSdkDependencies);
       final yamlOutput = pubspecLock.toYaml();
-      test("it produces equivalent YAML content", () {
+      test('it produces equivalent YAML content', () {
         expect(yamlOutput, pubspecLockWithTwoSdkDependencies);
       });
     });

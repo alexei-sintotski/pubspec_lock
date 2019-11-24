@@ -30,35 +30,35 @@ import 'package:pubspec_lock/src/sdk_package_dependency.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group("$PubspecLock.loadFromYamlString", () {
-    group("given pubspec.lock with single sdk dependency", () {
+  group('$PubspecLock.loadFromYamlString', () {
+    group('given pubspec.lock with single sdk dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
-      test("it produces exactly one dependency object", () {
+      test('it produces exactly one dependency object', () {
         expect(pubspecLock.packages.length, 1);
       });
-      test("it produces PackageDependency with correct package name", () {
+      test('it produces PackageDependency with correct package name', () {
         expect(pubspecLock.packages.first.package(), package);
       });
-      test("it produces PackageDependency with correct version", () {
+      test('it produces PackageDependency with correct version', () {
         expect(pubspecLock.packages.first.version(), version);
       });
-      test("it produces PackageDependency of correct type", () {
+      test('it produces PackageDependency of correct type', () {
         expect(pubspecLock.packages.first.type(), DependencyType.direct);
       });
-      test("it produces SdkPackageDependency object", () {
+      test('it produces SdkPackageDependency object', () {
         expect(isSdkDependency(pubspecLock.packages.first), isTrue);
       });
-      test("it produces SdkPackageDependency object with correct data", () {
+      test('it produces SdkPackageDependency object with correct data', () {
         expect(sdkPackageDependency(pubspecLock.packages.first), expectedPackageDependency);
       });
     });
   });
 
-  group("$PubspecLock.toYaml", () {
-    group("given given pubspec.lock with single sdk dependency", () {
+  group('$PubspecLock.toYaml', () {
+    group('given given pubspec.lock with single sdk dependency', () {
       final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
       final yamlOutput = pubspecLock.toYaml();
-      test("it produces equivalent YAML content", () {
+      test('it produces equivalent YAML content', () {
         expect(yamlOutput, pubspecLockWithSdkDependency);
       });
     });

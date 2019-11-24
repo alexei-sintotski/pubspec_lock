@@ -28,14 +28,16 @@ import 'package:meta/meta.dart';
 
 part 'sdk_dependency.g.dart';
 
+// ignore_for_file: annotate_overrides
+
 @immutable
 @FunctionalData()
 class SdkDependency extends $SdkDependency {
-  final String sdk;
-  final String version;
-
   const SdkDependency({
     @required this.sdk,
     @required this.version,
   });
+
+  final String sdk;
+  final String version;
 }

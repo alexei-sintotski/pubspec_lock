@@ -33,26 +33,29 @@ import '../package_dependency.dart';
 import '../path_package_dependency.dart';
 import '../sdk_package_dependency.dart';
 
+// ignore_for_file: avoid_as
+
 Iterable<PackageDependency> loadPackages(YamlMap yaml) => yaml.containsKey(_packagesKeyword)
     ? _packagesYamlMap(yaml)
         .entries
-        .map((entry) => loadPackageDependency(package: entry.key, definition: entry.value as YamlMap))
+        .map((entry) => loadPackageDependency(package: entry.key as String, definition: entry.value as YamlMap))
     : [];
 
-PackageDependency loadPackageDependency({@required package, @required YamlMap definition}) {
+PackageDependency loadPackageDependency({@required String package, @required YamlMap definition}) {
   final source = _source(definition);
-  if (source == 'sdk')
+  if (source == 'sdk') {
     return PackageDependency.sdk(_loadSdkPackageDependency(package: package, definition: definition));
-  else if (source == 'hosted')
+  } else if (source == 'hosted') {
     return PackageDependency.hosted(_loadHostedPackageDependency(package: package, definition: definition));
-  else if (source == 'git')
+  } else if (source == 'git') {
     return PackageDependency.git(_loadGitPackageDependency(package: package, definition: definition));
-  else if (source == 'path')
+  } else if (source == 'path') {
     return PackageDependency.path(_loadPathPackageDependency(package: package, definition: definition));
-  throw AssertionError("Unknown package source: $source");
+  }
+  throw AssertionError('Unknown package source: $source');
 }
 
-SdkPackageDependency _loadSdkPackageDependency({@required package, @required YamlMap definition}) =>
+SdkPackageDependency _loadSdkPackageDependency({@required String package, @required YamlMap definition}) =>
     SdkPackageDependency(
       package: package,
       version: _version(definition),
@@ -60,7 +63,7 @@ SdkPackageDependency _loadSdkPackageDependency({@required package, @required Yam
       type: _packageDependencyType(definition),
     );
 
-HostedPackageDependency _loadHostedPackageDependency({@required package, @required YamlMap definition}) {
+HostedPackageDependency _loadHostedPackageDependency({@required String package, @required YamlMap definition}) {
   final description = _descriptionYamlMap(definition);
   return HostedPackageDependency(
     package: package,
@@ -71,7 +74,7 @@ HostedPackageDependency _loadHostedPackageDependency({@required package, @requir
   );
 }
 
-GitPackageDependency _loadGitPackageDependency({@required package, @required YamlMap definition}) {
+GitPackageDependency _loadGitPackageDependency({@required String package, @required YamlMap definition}) {
   final description = _descriptionYamlMap(definition);
   return GitPackageDependency(
     package: package,
@@ -84,7 +87,7 @@ GitPackageDependency _loadGitPackageDependency({@required package, @required Yam
   );
 }
 
-PathPackageDependency _loadPathPackageDependency({@required package, @required YamlMap definition}) {
+PathPackageDependency _loadPathPackageDependency({@required String package, @required YamlMap definition}) {
   final description = _descriptionYamlMap(definition);
   return PathPackageDependency(
     package: package,
@@ -96,17 +99,17 @@ PathPackageDependency _loadPathPackageDependency({@required package, @required Y
 }
 
 const _packagesKeyword = 'packages';
-YamlMap _packagesYamlMap(YamlMap yaml) => yaml[_packagesKeyword];
-YamlMap _descriptionYamlMap(YamlMap yaml) => yaml['description'];
-String _description(YamlMap yaml) => yaml['description'];
-String _name(YamlMap yaml) => yaml['name'];
-String _path(YamlMap yaml) => yaml['path'];
-String _ref(YamlMap yaml) => yaml['ref'];
-bool _relative(YamlMap yaml) => yaml['relative'];
-String _resolvedRef(YamlMap yaml) => yaml['resolved-ref'];
-String _source(YamlMap yaml) => yaml['source'];
-String _url(YamlMap yaml) => yaml['url'];
-String _version(YamlMap yaml) => yaml['version'];
+YamlMap _packagesYamlMap(YamlMap yaml) => yaml[_packagesKeyword] as YamlMap;
+YamlMap _descriptionYamlMap(YamlMap yaml) => yaml['description'] as YamlMap;
+String _description(YamlMap yaml) => yaml['description'] as String;
+String _name(YamlMap yaml) => yaml['name'] as String;
+String _path(YamlMap yaml) => yaml['path'] as String;
+String _ref(YamlMap yaml) => yaml['ref'] as String;
+bool _relative(YamlMap yaml) => yaml['relative'] as bool;
+String _resolvedRef(YamlMap yaml) => yaml['resolved-ref'] as String;
+String _source(YamlMap yaml) => yaml['source'] as String;
+String _url(YamlMap yaml) => yaml['url'] as String;
+String _version(YamlMap yaml) => yaml['version'] as String;
 DependencyType _packageDependencyType(YamlMap yaml) => _dependencyTypeMap[yaml['dependency'] as String];
 
 const _dependencyTypeMap = <String, DependencyType>{

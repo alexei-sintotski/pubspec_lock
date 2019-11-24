@@ -27,9 +27,11 @@ import 'package:yaml/yaml.dart';
 
 import '../sdk_dependency.dart';
 
+// ignore_for_file: avoid_as
+
 Iterable<SdkDependency> loadSdks(YamlMap yaml) => yaml.containsKey(_sdksKeyword)
-    ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key, version: entry.value))
+    ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key as String, version: entry.value as String))
     : [];
 
 const _sdksKeyword = 'sdks';
-YamlMap _sdksYamlMap(YamlMap yaml) => yaml[_sdksKeyword];
+YamlMap _sdksYamlMap(YamlMap yaml) => yaml[_sdksKeyword] as YamlMap;
