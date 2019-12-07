@@ -3,7 +3,7 @@ Dart library to access and manipulate content of pubpec.lock files
 
 ## Class PubspecLock
 
-PubspecLock is a data type representing data stored in pubspec.lock files.
+PubspecLock represents data stored in pubspec.lock files.
 It provides the following facilities:
 - Parser from pubspec.lock YAML string
 - Formatter to pubspec.lock YAML string
@@ -32,7 +32,7 @@ dependencies:
 
 ## Full example
 
-The following Dart script check whether all Dart dependencies are taken from pub.dev.
+The following Dart script checks whether all Dart dependencies are taken from pub.dev.
 
 ```
 import 'dart:io';
@@ -65,4 +65,3 @@ bool isHostedByPubDev(PackageDependency package) =>
       otherwise: () => false,
     );
 ```
-
