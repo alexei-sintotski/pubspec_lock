@@ -1,3 +1,6 @@
+## [1.1.0] - 2019-12-07
+* YAML formatting with json2yaml i.s.o. using ad-hoc YAML generator
+
 ## [1.0.2] - 2019-11-24
 * README.md readability is improved
 
