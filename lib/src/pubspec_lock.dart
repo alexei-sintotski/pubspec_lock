@@ -59,5 +59,5 @@ class PubspecLock extends $PubspecLock {
   final Iterable<SdkDependency> sdks;
   final Iterable<PackageDependency> packages;
 
-  String toYaml() => formatToYaml(sdks: sdks, packages: packages);
+  String toYaml() => formatToYaml(this);
 }
