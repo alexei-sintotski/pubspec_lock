@@ -32,9 +32,11 @@ part 'git_package_dependency.g.dart';
 
 // ignore_for_file: annotate_overrides
 
+/// Git dependency as specified by https://dart.dev/tools/pub/dependencies
 @immutable
 @FunctionalData()
 class GitPackageDependency extends $GitPackageDependency {
+  /// Default constructor
   const GitPackageDependency({
     @required this.package,
     @required this.version,

@@ -45,8 +45,10 @@ part 'pubspec_lock.g.dart';
 @immutable
 @FunctionalData()
 class PubspecLock extends $PubspecLock {
+  /// Default constructor
   const PubspecLock({this.sdks = const {}, this.packages = const {}});
 
+  /// Creates a PubspecLock object from a YAML string
   factory PubspecLock.loadFromYamlString(String content) {
     assert(content != null, 'content must not be null');
     assert(content.trim().isNotEmpty, 'content must not be empty');
@@ -59,5 +61,6 @@ class PubspecLock extends $PubspecLock {
   final Iterable<SdkDependency> sdks;
   final Iterable<PackageDependency> packages;
 
+  /// Produces a YAML representation of the PubspecLock object
   String toYaml() => formatToYaml(this);
 }

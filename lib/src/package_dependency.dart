@@ -42,6 +42,7 @@ class PackageDependency extends _$PackageDependency {
   const PackageDependency.git(GitPackageDependency git) : super(git: git);
   const PackageDependency.path(PathPackageDependency path) : super(path: path);
 
+  /// Provides package dependency name
   String package() => iswitch(
         sdk: (d) => d.package,
         hosted: (d) => d.package,
@@ -49,6 +50,7 @@ class PackageDependency extends _$PackageDependency {
         path: (d) => d.package,
       );
 
+  /// Provides package dependency version
   String version() => iswitch(
         sdk: (d) => d.version,
         hosted: (d) => d.version,
@@ -56,6 +58,7 @@ class PackageDependency extends _$PackageDependency {
         path: (d) => d.version,
       );
 
+  /// Provides package dependency type -- direct, development, or transitive
   DependencyType type() => iswitch(
         sdk: (d) => d.type,
         hosted: (d) => d.type,
