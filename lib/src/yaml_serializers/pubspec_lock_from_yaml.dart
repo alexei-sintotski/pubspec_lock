@@ -25,14 +25,16 @@
 
 import 'package:yaml/yaml.dart';
 
-import '../sdk_dependency.dart';
+import '../../pubspec_lock.dart';
+import 'internal/load_packages.dart';
+import 'internal/load_sdks.dart';
 
-// ignore_for_file: avoid_as
-// ignore_for_file: public_member_api_docs
-
-Iterable<SdkDependency> loadSdks(YamlMap yaml) => yaml.containsKey(_sdksKeyword)
-    ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key as String, version: entry.value as String))
-    : [];
-
-const _sdksKeyword = 'sdks';
-YamlMap _sdksYamlMap(YamlMap yaml) => yaml[_sdksKeyword] as YamlMap;
+/// Creates a PubspecLock object from YAML string
+extension PubspecLockFromYamlString on String {
+  /// Creates a PubspecLock object from a YAML string
+  PubspecLock loadPubspecLockFromYaml() {
+    // ignore: avoid_as
+    final yaml = loadYaml(this) as YamlMap;
+    return PubspecLock(packages: loadPackages(yaml), sdks: loadSdks(yaml));
+  }
+}

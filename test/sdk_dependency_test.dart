@@ -23,14 +23,13 @@
  *
  */
 
-import 'package:pubspec_lock/src/pubspec_lock.dart';
-import 'package:pubspec_lock/src/sdk_dependency.dart';
+import 'package:pubspec_lock/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('$PubspecLock.loadFromYamlString', () {
     group('given pubspec.lock with SDK dependency', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
+      final pubspecLock = pubspecLockWithSdkDependency.loadPubspecLockFromYaml();
       test('it provides a single SDK dependency object', () {
         expect(pubspecLock.sdks.length, 1);
       });
@@ -40,7 +39,7 @@ void main() {
     });
 
     group('given pubspec.lock without sdk dependencies', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithoutSdkDependencies);
+      final pubspecLock = pubspecLockWithoutSdkDependencies.loadPubspecLockFromYaml();
       test('it provides no SDK dependencies', () {
         expect(pubspecLock.sdks, isEmpty);
       });
@@ -49,16 +48,16 @@ void main() {
 
   group('$PubspecLock.toYaml', () {
     group('given given pubspec.lock with SDK dependency', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithSdkDependency);
-      final yamlOutput = pubspecLock.toYaml();
+      final pubspecLock = pubspecLockWithSdkDependency.loadPubspecLockFromYaml();
+      final yamlOutput = pubspecLock.toYamlString();
       test('it produces equivalent YAML content', () {
         expect(yamlOutput, pubspecLockWithSdkDependency);
       });
     });
 
     group('given pubspec.lock with multiple SDK dependencies', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithTwoSdkDependencies);
-      final yamlOutput = pubspecLock.toYaml();
+      final pubspecLock = pubspecLockWithTwoSdkDependencies.loadPubspecLockFromYaml();
+      final yamlOutput = pubspecLock.toYamlString();
       test('it produces equivalent YAML content', () {
         expect(yamlOutput, pubspecLockWithTwoSdkDependencies);
       });
