@@ -23,20 +23,20 @@
  *
  */
 
-import 'package:pubspec_lock/src/pubspec_lock.dart';
+import 'package:pubspec_lock/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('$PubspecLock.loadFromYamlString', () {
     group('when loads pubspec.lock without package dependencies', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(wellFormedEmptyYaml);
+      final pubspecLock = wellFormedEmptyYaml.loadPubspecLockFromYaml();
       test('it produces empty package dependency list', () {
         expect(pubspecLock.packages.isEmpty, isTrue);
       });
     });
 
     group('when loads pubspec.lock with three package dependencies', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithThreePackageDependencies);
+      final pubspecLock = pubspecLockWithThreePackageDependencies.loadPubspecLockFromYaml();
       test('it produces three package dependency objects', () {
         expect(pubspecLock.packages.length, 3);
       });

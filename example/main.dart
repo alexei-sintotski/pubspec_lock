@@ -5,7 +5,7 @@ import 'package:pubspec_lock/pubspec_lock.dart';
 // ignore_for_file: avoid_print
 
 void main() {
-  final pubspecLock = PubspecLock.loadFromYamlString(File('pubspec.lock').readAsStringSync());
+  final pubspecLock = File('pubspec.lock').readAsStringSync().loadPubspecLockFromYaml();
   print('Loaded pubspec.lock with ${pubspecLock.packages.length} package dependencies:');
 
   final depsNotHostedByPubDev = [for (final package in pubspecLock.packages) if (!isHostedByPubDev(package)) package];

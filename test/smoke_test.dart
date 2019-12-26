@@ -25,7 +25,7 @@
 
 import 'dart:io';
 
-import 'package:pubspec_lock/src/pubspec_lock.dart';
+import 'package:pubspec_lock/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 // ignore_for_file: avoid_as
@@ -35,17 +35,15 @@ void main() {
 
   group('$PubspecLock().loadFromYamlString', () {
     group('given realistic pubspec.lock content', () {
-      test('it does not crash', () {
-        PubspecLock.loadFromYamlString(realisticContent);
-      });
+      test('it does not crash', realisticContent.loadPubspecLockFromYaml);
     });
   });
 
   group('$PubspecLock.toYaml', () {
     group('given realistic pubspec.lock content', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(realisticContent);
+      final pubspecLock = realisticContent.loadPubspecLockFromYaml();
       test('it produces equivalent YAML content', () {
-        expect(pubspecLock.toYaml(), realisticContent);
+        expect(pubspecLock.toYamlString(), realisticContent);
       });
     });
   });

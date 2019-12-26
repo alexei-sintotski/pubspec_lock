@@ -23,27 +23,16 @@
  *
  */
 
-import 'package:functional_data/functional_data.dart';
-import 'package:meta/meta.dart';
+import 'package:yaml/yaml.dart';
 
-import 'package_dependency.dart';
-import 'sdk_dependency.dart';
+import '../../sdk_dependency.dart';
 
-part 'pubspec_lock.g.dart';
+// ignore_for_file: avoid_as
+// ignore_for_file: public_member_api_docs
 
-// ignore_for_file: annotate_overrides
+Iterable<SdkDependency> loadSdks(YamlMap yaml) => yaml.containsKey(_sdksKeyword)
+    ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key as String, version: entry.value as String))
+    : [];
 
-/// PubspecLock is a data type representing data stored in pubspec.lock files.
-/// It provides the following facilities:
-/// - Parser from pubspec.lock YAML string
-/// - Formatter to pubspec.lock YAML string
-/// - https://pub.dev/packages/functional_data is used to provide data type facilities
-@immutable
-@FunctionalData()
-class PubspecLock extends $PubspecLock {
-  /// Default constructor
-  const PubspecLock({this.sdks = const {}, this.packages = const {}});
-
-  final Iterable<SdkDependency> sdks;
-  final Iterable<PackageDependency> packages;
-}
+const _sdksKeyword = 'sdks';
+YamlMap _sdksYamlMap(YamlMap yaml) => yaml[_sdksKeyword] as YamlMap;

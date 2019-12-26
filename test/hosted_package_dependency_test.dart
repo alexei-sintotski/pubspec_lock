@@ -23,16 +23,13 @@
  *
  */
 
-import 'package:pubspec_lock/src/package_dependency.dart';
-import 'package:pubspec_lock/src/package_dependency_variants/dependency_type.dart';
-import 'package:pubspec_lock/src/package_dependency_variants/hosted_package_dependency.dart';
-import 'package:pubspec_lock/src/pubspec_lock.dart';
+import 'package:pubspec_lock/pubspec_lock.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('$PubspecLock.loadFromYamlString', () {
     group('given pubspec.lock with single hosted dependency', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithHostedDependency);
+      final pubspecLock = pubspecLockWithHostedDependency.loadPubspecLockFromYaml();
       test('it produces exactly one dependency object', () {
         expect(pubspecLock.packages.length, 1);
       });
@@ -56,8 +53,8 @@ void main() {
 
   group('$PubspecLock.toYaml', () {
     group('given pubspec.lock with single hosted dependency', () {
-      final pubspecLock = PubspecLock.loadFromYamlString(pubspecLockWithHostedDependency);
-      final yamlOutput = pubspecLock.toYaml();
+      final pubspecLock = pubspecLockWithHostedDependency.loadPubspecLockFromYaml();
+      final yamlOutput = pubspecLock.toYamlString();
       test('it produces equivalent YAML ouptut', () {
         expect(yamlOutput, pubspecLockWithHostedDependency);
       });
