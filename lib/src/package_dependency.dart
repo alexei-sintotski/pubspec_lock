@@ -26,11 +26,11 @@
 import 'package:meta/meta.dart';
 import 'package:sum_types/sum_types.dart';
 
-import 'dependency_type.dart';
-import 'git_package_dependency.dart';
-import 'hosted_package_dependency.dart';
-import 'path_package_dependency.dart';
-import 'sdk_package_dependency.dart';
+import 'package_dependency_variants/dependency_type.dart';
+import 'package_dependency_variants/git_package_dependency.dart';
+import 'package_dependency_variants/hosted_package_dependency.dart';
+import 'package_dependency_variants/path_package_dependency.dart';
+import 'package_dependency_variants/sdk_package_dependency.dart';
 
 part 'package_dependency.g.dart';
 
