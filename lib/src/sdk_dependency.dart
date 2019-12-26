@@ -30,9 +30,11 @@ part 'sdk_dependency.g.dart';
 
 // ignore_for_file: annotate_overrides
 
+/// SDK dependency
 @immutable
 @FunctionalData()
 class SdkDependency extends $SdkDependency {
+  /// Default constructor
   const SdkDependency({
     @required this.sdk,
     @required this.version,

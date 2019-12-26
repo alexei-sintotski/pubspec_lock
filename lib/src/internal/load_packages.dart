@@ -33,6 +33,7 @@ import '../path_package_dependency.dart';
 import '../sdk_package_dependency.dart';
 
 // ignore_for_file: avoid_as
+// ignore_for_file: public_member_api_docs
 
 Iterable<PackageDependency> loadPackages(YamlMap yaml) => yaml.containsKey(_packagesKeyword)
     ? _packagesYamlMap(yaml)

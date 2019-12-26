@@ -28,6 +28,7 @@ import 'package:yaml/yaml.dart';
 import '../sdk_dependency.dart';
 
 // ignore_for_file: avoid_as
+// ignore_for_file: public_member_api_docs
 
 Iterable<SdkDependency> loadSdks(YamlMap yaml) => yaml.containsKey(_sdksKeyword)
     ? _sdksYamlMap(yaml).entries.map((entry) => SdkDependency(sdk: entry.key as String, version: entry.value as String))

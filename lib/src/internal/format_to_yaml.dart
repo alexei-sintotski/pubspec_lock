@@ -26,6 +26,8 @@ import 'package:json2yaml/json2yaml.dart';
 
 import '../../pubspec_lock.dart';
 
+// ignore_for_file: public_member_api_docs
+
 String formatToYaml(
   PubspecLock pubspecLock,
 ) =>
