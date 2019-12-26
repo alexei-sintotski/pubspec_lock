@@ -23,7 +23,8 @@
  */
 
 import 'package:json2yaml/json2yaml.dart';
-import 'package:pubspec_lock/pubspec_lock.dart';
+
+import '../../pubspec_lock.dart';
 
 String formatToYaml(
   PubspecLock pubspecLock,

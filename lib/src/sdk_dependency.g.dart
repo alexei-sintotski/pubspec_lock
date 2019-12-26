@@ -29,12 +29,14 @@ class SdkDependency$ {
       Lens<SdkDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
 }
 
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: type_annotate_public_apis
-// ignore_for_file: avoid_classes_with_only_static_members
-// ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: annotate_overrides
+// ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: prefer_asserts_with_message
+// ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: sort_constructors_first
-// ignore_for_file: prefer_expression_function_bodies
-// ignore_for_file: always_put_required_named_parameters_first
+// ignore_for_file: type_annotate_public_apis

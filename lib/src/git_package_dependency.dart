@@ -25,7 +25,8 @@
 
 import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
-import 'package:pubspec_lock/src/dependency_type.dart';
+
+import 'dependency_type.dart';
 
 part 'git_package_dependency.g.dart';
 
