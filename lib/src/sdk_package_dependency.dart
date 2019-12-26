@@ -25,7 +25,8 @@
 
 import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
-import 'package:pubspec_lock/src/dependency_type.dart';
+
+import 'dependency_type.dart';
 
 part 'sdk_package_dependency.g.dart';
 
@@ -40,10 +41,7 @@ class SdkPackageDependency extends $SdkPackageDependency {
     @required this.version,
     @required this.description,
     @required this.type,
-  })  : assert(package != null),
-        assert(version != null),
-        assert(description != null),
-        assert(type != null);
+  });
 
   final String package;
   final String version;

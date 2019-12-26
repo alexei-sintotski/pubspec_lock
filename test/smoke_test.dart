@@ -28,6 +28,8 @@ import 'dart:io';
 import 'package:pubspec_lock/src/pubspec_lock.dart';
 import 'package:test/test.dart';
 
+// ignore_for_file: avoid_as
+
 void main() {
   final realisticContent = File('${gitRepoRoot()}/pubspec.lock').readAsStringSync();
 

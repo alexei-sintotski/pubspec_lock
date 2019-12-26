@@ -5,7 +5,7 @@ author: Alexei Sintotski <alexei.sintotski@gmail.com>
 homepage: https://github.com/alexei-sintotski/pubspec_lock
 
 environment:
-  sdk: ">=2.5.0 <3.0.0"
+  sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   meta: ^1.0.0
