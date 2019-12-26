@@ -23,9 +23,9 @@
  *
  */
 
-import 'package:pubspec_lock/src/dependency_type.dart';
 import 'package:pubspec_lock/src/package_dependency.dart';
-import 'package:pubspec_lock/src/path_package_dependency.dart';
+import 'package:pubspec_lock/src/package_dependency_variants/dependency_type.dart';
+import 'package:pubspec_lock/src/package_dependency_variants/path_package_dependency.dart';
 import 'package:pubspec_lock/src/pubspec_lock.dart';
 import 'package:test/test.dart';
 
