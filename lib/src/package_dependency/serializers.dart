@@ -32,21 +32,19 @@ import 'sdk_package_dependency/serializers.dart';
 // ignore_for_file: avoid_as
 // ignore_for_file: public_member_api_docs
 
-extension PackageDependencyFromJson on MapEntry<String, dynamic> {
-  PackageDependency loadPackageDependency() {
-    final definition = value as Map<String, dynamic>;
-    final source = definition[_Tokens.source] as String;
-    if (source == _Tokens.sdk) {
-      return PackageDependency.sdk(loadSdkPackageDependency());
-    } else if (source == _Tokens.hosted) {
-      return PackageDependency.hosted(loadHostedPackageDependency());
-    } else if (source == _Tokens.git) {
-      return PackageDependency.git(loadGitPackageDependency());
-    } else if (source == _Tokens.path) {
-      return PackageDependency.path(loadPathPackageDependency());
-    }
-    throw AssertionError('Unknown package source: $source');
+PackageDependency loadPackageDependency(MapEntry<String, dynamic> entry) {
+  final definition = entry.value as Map<String, dynamic>;
+  final source = definition[_Tokens.source] as String;
+  if (source == _Tokens.sdk) {
+    return PackageDependency.sdk(loadSdkPackageDependency(entry));
+  } else if (source == _Tokens.hosted) {
+    return PackageDependency.hosted(loadHostedPackageDependency(entry));
+  } else if (source == _Tokens.git) {
+    return PackageDependency.git(loadGitPackageDependency(entry));
+  } else if (source == _Tokens.path) {
+    return PackageDependency.path(loadPathPackageDependency(entry));
   }
+  throw AssertionError('Unknown package source: $source');
 }
 
 extension PackageDependencyToJson on PackageDependency {

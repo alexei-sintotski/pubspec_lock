@@ -29,29 +29,29 @@
 import '../dependency_type/serializers.dart';
 import 'path_package_dependency.dart';
 
-extension PathPackageDependencyFromJson on MapEntry<String, dynamic> {
-  PathPackageDependency loadPathPackageDependency() {
-    final definition = value as Map<String, dynamic>;
-    final description = definition[_Tokens.description] as Map<String, dynamic>;
-    return PathPackageDependency(
-      package: key,
-      version: definition[_Tokens.version] as String,
-      path: description[_Tokens.path] as String,
-      relative: description[_Tokens.relative] as bool,
-      type: (definition[_Tokens.dependency] as String).parseDependencyType(),
-    );
-  }
+PathPackageDependency loadPathPackageDependency(MapEntry<String, dynamic> entry) {
+  final definition = entry.value as Map<String, dynamic>;
+  final description = definition[_Tokens.description] as Map<String, dynamic>;
+  return PathPackageDependency(
+    package: entry.key,
+    version: definition[_Tokens.version] as String,
+    path: description[_Tokens.path] as String,
+    relative: description[_Tokens.relative] as bool,
+    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+  );
 }
 
 extension PathPackageDependencyToJson on PathPackageDependency {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        _Tokens.dependency: type.format(),
-        _Tokens.description: <String, dynamic>{
-          _Tokens.path: '"$path"',
-          _Tokens.relative: relative,
+        package: <String, dynamic>{
+          _Tokens.dependency: type.format(),
+          _Tokens.description: <String, dynamic>{
+            _Tokens.path: '"$path"',
+            _Tokens.relative: relative,
+          },
+          _Tokens.source: _Tokens.path,
+          _Tokens.version: version,
         },
-        _Tokens.source: _Tokens.path,
-        _Tokens.version: version,
       };
 }
 

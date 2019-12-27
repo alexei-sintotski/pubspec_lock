@@ -28,12 +28,10 @@
 
 import 'sdk_dependency.dart';
 
-extension SdkDependencyFromJson on MapEntry<String, dynamic> {
-  SdkDependency loadSdkDependency() => SdkDependency(
-        sdk: key,
-        version: value as String,
-      );
-}
+SdkDependency loadSdkDependency(MapEntry<String, dynamic> entry) => SdkDependency(
+      sdk: entry.key,
+      version: entry.value as String,
+    );
 
 extension SdkDependencyToJson on SdkDependency {
   Map<String, dynamic> toJson() => <String, dynamic>{sdk: version};

@@ -29,29 +29,29 @@
 import '../dependency_type/serializers.dart';
 import 'hosted_package_dependency.dart';
 
-extension HostedPackageDependencyFromJson on MapEntry<String, dynamic> {
-  HostedPackageDependency loadHostedPackageDependency() {
-    final definition = value as Map<String, dynamic>;
-    final description = definition[_Tokens.description] as Map<String, dynamic>;
-    return HostedPackageDependency(
-      package: key,
-      version: definition[_Tokens.version] as String,
-      name: description[_Tokens.name] as String,
-      url: description[_Tokens.url] as String,
-      type: (definition[_Tokens.dependency] as String).parseDependencyType(),
-    );
-  }
+HostedPackageDependency loadHostedPackageDependency(MapEntry<String, dynamic> entry) {
+  final definition = entry.value as Map<String, dynamic>;
+  final description = definition[_Tokens.description] as Map<String, dynamic>;
+  return HostedPackageDependency(
+    package: entry.key,
+    version: definition[_Tokens.version] as String,
+    name: description[_Tokens.name] as String,
+    url: description[_Tokens.url] as String,
+    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+  );
 }
 
 extension HostedPackageDependencyToJson on HostedPackageDependency {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        _Tokens.dependency: type.format(),
-        _Tokens.description: <String, dynamic>{
-          _Tokens.name: name,
-          _Tokens.url: url,
+        package: <String, dynamic>{
+          _Tokens.dependency: type.format(),
+          _Tokens.description: <String, dynamic>{
+            _Tokens.name: name,
+            _Tokens.url: url,
+          },
+          _Tokens.source: _Tokens.hosted,
+          _Tokens.version: version,
         },
-        _Tokens.source: _Tokens.hosted,
-        _Tokens.version: version,
       };
 }
 
