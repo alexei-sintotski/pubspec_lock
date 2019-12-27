@@ -23,15 +23,25 @@
  *
  */
 
-import '../../sdk_dependency.dart';
-import 'tokens.dart';
-
-// ignore_for_file: avoid_as
 // ignore_for_file: public_member_api_docs
 
-Iterable<SdkDependency> loadSdks(Map<String, dynamic> jsonMap) => jsonMap.containsKey(Tokens.sdks)
-    ? (jsonMap[Tokens.sdks] as Map<String, dynamic>).entries.map((entry) => SdkDependency(
-          sdk: entry.key,
-          version: entry.value as String,
-        ))
-    : [];
+class Tokens {
+  static const sdks = 'sdks';
+  static const packages = 'packages';
+  static const source = 'source';
+  static const sdk = 'sdk';
+  static const hosted = 'hosted';
+  static const git = 'git';
+  static const path = 'path';
+  static const version = 'version';
+  static const description = 'description';
+  static const dependency = 'dependency';
+  static const name = 'name';
+  static const url = 'url';
+  static const ref = 'ref';
+  static const resolvedRef = 'resolved-ref';
+  static const relative = 'relative';
+  static const directMain = 'direct main';
+  static const directDev = 'direct dev';
+  static const transitive = 'transitive';
+}

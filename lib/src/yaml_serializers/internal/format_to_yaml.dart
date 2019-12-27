@@ -25,6 +25,7 @@
 import 'package:json2yaml/json2yaml.dart';
 
 import '../../../pubspec_lock.dart';
+import 'tokens.dart';
 
 // ignore_for_file: public_member_api_docs
 
@@ -40,8 +41,8 @@ Map<String, dynamic> _toJson(
   PubspecLock pubspecLock,
 ) =>
     <String, dynamic>{
-      if (pubspecLock.packages.isNotEmpty) 'packages': _packagesToJson(pubspecLock.packages),
-      if (pubspecLock.sdks.isNotEmpty) 'sdks': _sdksToJson(pubspecLock.sdks),
+      if (pubspecLock.packages.isNotEmpty) Tokens.packages: _packagesToJson(pubspecLock.packages),
+      if (pubspecLock.sdks.isNotEmpty) Tokens.sdks: _sdksToJson(pubspecLock.sdks),
     };
 
 Map<String, dynamic> _packagesToJson(Iterable<PackageDependency> packages) =>
@@ -58,52 +59,52 @@ Map<String, dynamic> _packageToJson(PackageDependency package) => package.iswitc
     );
 
 Map<String, dynamic> _gitDependencyToJson(GitPackageDependency p) => <String, dynamic>{
-      'dependency': _convertDepTypeToString(p.type),
-      'description': <String, dynamic>{
-        'path': '"${p.path}"',
-        'ref': p.ref,
-        'resolved-ref': '"${p.resolvedRef}"',
-        'url': p.url,
+      Tokens.dependency: _convertDepTypeToString(p.type),
+      Tokens.description: <String, dynamic>{
+        Tokens.path: '"${p.path}"',
+        Tokens.ref: p.ref,
+        Tokens.resolvedRef: '"${p.resolvedRef}"',
+        Tokens.url: p.url,
       },
-      'source': 'git',
-      'version': p.version,
+      Tokens.source: Tokens.git,
+      Tokens.version: p.version,
     };
 
 Map<String, dynamic> _hostedDependencyToJson(HostedPackageDependency p) => <String, dynamic>{
-      'dependency': _convertDepTypeToString(p.type),
-      'description': <String, dynamic>{
-        'name': p.name,
-        'url': p.url,
+      Tokens.dependency: _convertDepTypeToString(p.type),
+      Tokens.description: <String, dynamic>{
+        Tokens.name: p.name,
+        Tokens.url: p.url,
       },
-      'source': 'hosted',
-      'version': p.version,
+      Tokens.source: Tokens.hosted,
+      Tokens.version: p.version,
     };
 
 Map<String, dynamic> _pathDependencyToJson(PathPackageDependency p) => <String, dynamic>{
-      'dependency': _convertDepTypeToString(p.type),
-      'description': <String, dynamic>{
-        'path': '"${p.path}"',
-        'relative': p.relative,
+      Tokens.dependency: _convertDepTypeToString(p.type),
+      Tokens.description: <String, dynamic>{
+        Tokens.path: '"${p.path}"',
+        Tokens.relative: p.relative,
       },
-      'source': 'path',
-      'version': p.version,
+      Tokens.source: Tokens.path,
+      Tokens.version: p.version,
     };
 
 Map<String, dynamic> _sdkDependencyToJson(SdkPackageDependency p) => <String, dynamic>{
-      'dependency': _convertDepTypeToString(p.type),
-      'description': p.description,
-      'source': 'sdk',
-      'version': p.version,
+      Tokens.dependency: _convertDepTypeToString(p.type),
+      Tokens.description: p.description,
+      Tokens.source: Tokens.sdk,
+      Tokens.version: p.version,
     };
 
 String _convertDepTypeToString(DependencyType dependencyType) {
   switch (dependencyType) {
     case DependencyType.direct:
-      return '"direct main"';
+      return '"${Tokens.directMain}"';
     case DependencyType.development:
-      return '"direct dev"';
+      return '"${Tokens.directDev}"';
     case DependencyType.transitive:
-      return 'transitive';
+      return Tokens.transitive;
   }
   throw AssertionError(dependencyType);
 }
