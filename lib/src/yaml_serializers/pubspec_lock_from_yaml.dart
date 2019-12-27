@@ -23,6 +23,8 @@
  *
  */
 
+import 'dart:convert';
+
 import 'package:yaml/yaml.dart';
 
 import '../../pubspec_lock.dart';
@@ -34,7 +36,7 @@ extension PubspecLockFromYamlString on String {
   /// Creates a PubspecLock object from a YAML string
   PubspecLock loadPubspecLockFromYaml() {
     // ignore: avoid_as
-    final yaml = loadYaml(this) as YamlMap;
-    return PubspecLock(packages: loadPackages(yaml), sdks: loadSdks(yaml));
+    final jsonMap = json.decode(json.encode(loadYaml(this))) as Map<String, dynamic>;
+    return PubspecLock(packages: loadPackages(jsonMap), sdks: loadSdks(jsonMap));
   }
 }
