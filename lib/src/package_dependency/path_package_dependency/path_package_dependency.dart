@@ -23,15 +23,33 @@
  *
  */
 
-import '../../sdk_dependency.dart';
-import 'tokens.dart';
+import 'package:functional_data/functional_data.dart';
+import 'package:meta/meta.dart';
 
-// ignore_for_file: avoid_as
-// ignore_for_file: public_member_api_docs
+import '../dependency_type/definition.dart';
 
-Iterable<SdkDependency> loadSdks(Map<String, dynamic> jsonMap) => jsonMap.containsKey(Tokens.sdks)
-    ? (jsonMap[Tokens.sdks] as Map<String, dynamic>).entries.map((entry) => SdkDependency(
-          sdk: entry.key,
-          version: entry.value as String,
-        ))
-    : [];
+part 'path_package_dependency.g.dart';
+
+// ignore_for_file: annotate_overrides
+
+/// Path dependency as specified by https://dart.dev/tools/pub/dependencies
+@immutable
+@FunctionalData()
+class PathPackageDependency extends $PathPackageDependency {
+  /// Default constructor
+  const PathPackageDependency({
+    @required this.package,
+    @required this.version,
+    @required this.path,
+    @required this.relative,
+    @required this.type,
+  });
+
+  final String package;
+  final String version;
+
+  final String path;
+  final bool relative;
+
+  final DependencyType type;
+}

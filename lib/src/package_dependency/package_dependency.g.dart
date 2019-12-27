@@ -133,6 +133,7 @@ abstract class PackageDependencyRecordBase<Self> {
   PathPackageDependency get path;
 }
 
+// ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: annotate_overrides
 // ignore_for_file: avoid_annotating_with_dynamic

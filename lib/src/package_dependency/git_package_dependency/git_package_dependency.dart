@@ -23,11 +23,37 @@
  *
  */
 
-import '../../pubspec_lock.dart';
-import 'internal/format_to_yaml.dart';
+import 'package:functional_data/functional_data.dart';
+import 'package:meta/meta.dart';
 
-/// Produces YAML representation of the PubspecLock object
-extension PubspecLockToYaml on PubspecLock {
-  /// Produces YAML representation of the PubspecLock object
-  String toYamlString() => formatToYaml(this);
+import '../dependency_type/definition.dart';
+
+part 'git_package_dependency.g.dart';
+
+// ignore_for_file: annotate_overrides
+
+/// Git dependency as specified by https://dart.dev/tools/pub/dependencies
+@immutable
+@FunctionalData()
+class GitPackageDependency extends $GitPackageDependency {
+  /// Default constructor
+  const GitPackageDependency({
+    @required this.package,
+    @required this.version,
+    @required this.ref,
+    @required this.url,
+    @required this.path,
+    @required this.resolvedRef,
+    @required this.type,
+  });
+
+  final String package;
+  final String version;
+
+  final String ref;
+  final String url;
+  final String path;
+  final String resolvedRef;
+
+  final DependencyType type;
 }

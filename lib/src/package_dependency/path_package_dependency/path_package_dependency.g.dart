@@ -1,57 +1,59 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'hosted_package_dependency.dart';
+part of 'path_package_dependency.dart';
 
 // **************************************************************************
 // FunctionalDataGenerator
 // **************************************************************************
 
-abstract class $HostedPackageDependency {
+abstract class $PathPackageDependency {
   String get package;
   String get version;
-  String get name;
-  String get url;
+  String get path;
+  bool get relative;
   DependencyType get type;
-  const $HostedPackageDependency();
-  HostedPackageDependency copyWith({String package, String version, String name, String url, DependencyType type}) =>
-      HostedPackageDependency(
+  const $PathPackageDependency();
+  PathPackageDependency copyWith({String package, String version, String path, bool relative, DependencyType type}) =>
+      PathPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
-          name: name ?? this.name,
-          url: url ?? this.url,
+          path: path ?? this.path,
+          relative: relative ?? this.relative,
           type: type ?? this.type);
   String toString() =>
-      "HostedPackageDependency(package: $package, version: $version, name: $name, url: $url, type: $type)";
+      "PathPackageDependency(package: $package, version: $version, path: $path, relative: $relative, type: $type)";
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType &&
       package == other.package &&
       version == other.version &&
-      name == other.name &&
-      url == other.url &&
+      path == other.path &&
+      relative == other.relative &&
       type == other.type;
   @override
   int get hashCode {
     var result = 17;
     result = 37 * result + package.hashCode;
     result = 37 * result + version.hashCode;
-    result = 37 * result + name.hashCode;
-    result = 37 * result + url.hashCode;
+    result = 37 * result + path.hashCode;
+    result = 37 * result + relative.hashCode;
     result = 37 * result + type.hashCode;
     return result;
   }
 }
 
-class HostedPackageDependency$ {
+class PathPackageDependency$ {
   static final package =
-      Lens<HostedPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+      Lens<PathPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
   static final version =
-      Lens<HostedPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final name = Lens<HostedPackageDependency, String>((s_) => s_.name, (s_, name) => s_.copyWith(name: name));
-  static final url = Lens<HostedPackageDependency, String>((s_) => s_.url, (s_, url) => s_.copyWith(url: url));
+      Lens<PathPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final path = Lens<PathPackageDependency, String>((s_) => s_.path, (s_, path) => s_.copyWith(path: path));
+  static final relative =
+      Lens<PathPackageDependency, bool>((s_) => s_.relative, (s_, relative) => s_.copyWith(relative: relative));
   static final type =
-      Lens<HostedPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+      Lens<PathPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
 }
 
+// ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: annotate_overrides
 // ignore_for_file: avoid_annotating_with_dynamic
