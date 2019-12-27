@@ -29,24 +29,24 @@ import 'sdk_package_dependency.dart';
 // ignore_for_file: avoid_as
 // ignore_for_file: public_member_api_docs
 
-extension SdkPackageDependencyFromJson on MapEntry<String, dynamic> {
-  SdkPackageDependency loadSdkPackageDependency() {
-    final definition = value as Map<String, dynamic>;
-    return SdkPackageDependency(
-      package: key,
-      version: definition[_Tokens.version] as String,
-      description: definition[_Tokens.description] as String,
-      type: (definition[_Tokens.dependency] as String).parseDependencyType(),
-    );
-  }
+SdkPackageDependency loadSdkPackageDependency(MapEntry<String, dynamic> entry) {
+  final definition = entry.value as Map<String, dynamic>;
+  return SdkPackageDependency(
+    package: entry.key,
+    version: definition[_Tokens.version] as String,
+    description: definition[_Tokens.description] as String,
+    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+  );
 }
 
 extension SdkPackageDependencyToJson on SdkPackageDependency {
   Map<String, dynamic> toJson() => <String, dynamic>{
-        _Tokens.dependency: type.format(),
-        _Tokens.description: description,
-        _Tokens.source: _Tokens.sdk,
-        _Tokens.version: version,
+        package: <String, dynamic>{
+          _Tokens.dependency: type.format(),
+          _Tokens.description: description,
+          _Tokens.source: _Tokens.sdk,
+          _Tokens.version: version,
+        },
       };
 }
 
