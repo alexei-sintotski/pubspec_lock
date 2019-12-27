@@ -23,20 +23,29 @@
  *
  */
 
-import 'dart:convert';
+import 'package:functional_data/functional_data.dart';
+import 'package:meta/meta.dart';
 
-import 'package:yaml/yaml.dart';
+import '../dependency_type/definition.dart';
 
-import '../../pubspec_lock.dart';
-import 'internal/load_packages.dart';
-import 'internal/load_sdks.dart';
+part 'sdk_package_dependency.g.dart';
 
-/// Creates a PubspecLock object from YAML string
-extension PubspecLockFromYamlString on String {
-  /// Creates a PubspecLock object from a YAML string
-  PubspecLock loadPubspecLockFromYaml() {
-    // ignore: avoid_as
-    final jsonMap = json.decode(json.encode(loadYaml(this))) as Map<String, dynamic>;
-    return PubspecLock(packages: loadPackages(jsonMap), sdks: loadSdks(jsonMap));
-  }
+// ignore_for_file: annotate_overrides
+
+/// SDK dependency as specified by https://dart.dev/tools/pub/dependencies
+@immutable
+@FunctionalData()
+class SdkPackageDependency extends $SdkPackageDependency {
+  /// Default constructor
+  const SdkPackageDependency({
+    @required this.package,
+    @required this.version,
+    @required this.description,
+    @required this.type,
+  });
+
+  final String package;
+  final String version;
+  final String description;
+  final DependencyType type;
 }

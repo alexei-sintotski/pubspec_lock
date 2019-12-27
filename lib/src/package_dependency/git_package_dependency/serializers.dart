@@ -23,25 +23,50 @@
  *
  */
 
+// ignore_for_file: avoid_as
 // ignore_for_file: public_member_api_docs
 
-class Tokens {
-  static const sdks = 'sdks';
-  static const packages = 'packages';
-  static const source = 'source';
-  static const sdk = 'sdk';
-  static const hosted = 'hosted';
-  static const git = 'git';
+import '../dependency_type/serializers.dart';
+import 'git_package_dependency.dart';
+
+extension GitPackageDependencyFromJson on MapEntry<String, dynamic> {
+  GitPackageDependency loadGitPackageDependency() {
+    final definition = value as Map<String, dynamic>;
+    final description = definition[_Tokens.description] as Map<String, dynamic>;
+    return GitPackageDependency(
+      package: key,
+      version: definition[_Tokens.version] as String,
+      ref: description[_Tokens.ref] as String,
+      url: description[_Tokens.url] as String,
+      path: description[_Tokens.path] as String,
+      resolvedRef: description[_Tokens.resolvedRef] as String,
+      type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+    );
+  }
+}
+
+extension GitPackageDependencyToJson on GitPackageDependency {
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        _Tokens.dependency: type.format(),
+        _Tokens.description: <String, dynamic>{
+          _Tokens.path: '"$path"',
+          _Tokens.ref: ref,
+          _Tokens.resolvedRef: '"$resolvedRef"',
+          _Tokens.url: url,
+        },
+        _Tokens.source: _Tokens.git,
+        _Tokens.version: version,
+      };
+}
+
+class _Tokens {
   static const path = 'path';
   static const version = 'version';
   static const description = 'description';
   static const dependency = 'dependency';
-  static const name = 'name';
   static const url = 'url';
   static const ref = 'ref';
   static const resolvedRef = 'resolved-ref';
-  static const relative = 'relative';
-  static const directMain = 'direct main';
-  static const directDev = 'direct dev';
-  static const transitive = 'transitive';
+  static const source = 'source';
+  static const git = 'git';
 }

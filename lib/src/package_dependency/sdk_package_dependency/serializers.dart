@@ -23,32 +23,37 @@
  *
  */
 
-import 'package:functional_data/functional_data.dart';
-import 'package:meta/meta.dart';
+import '../dependency_type/serializers.dart';
+import 'sdk_package_dependency.dart';
 
-import 'dependency_type.dart';
+// ignore_for_file: avoid_as
+// ignore_for_file: public_member_api_docs
 
-part 'hosted_package_dependency.g.dart';
+extension SdkPackageDependencyFromJson on MapEntry<String, dynamic> {
+  SdkPackageDependency loadSdkPackageDependency() {
+    final definition = value as Map<String, dynamic>;
+    return SdkPackageDependency(
+      package: key,
+      version: definition[_Tokens.version] as String,
+      description: definition[_Tokens.description] as String,
+      type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+    );
+  }
+}
 
-// ignore_for_file: annotate_overrides
+extension SdkPackageDependencyToJson on SdkPackageDependency {
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        _Tokens.dependency: type.format(),
+        _Tokens.description: description,
+        _Tokens.source: _Tokens.sdk,
+        _Tokens.version: version,
+      };
+}
 
-/// Hosted dependency as specified by https://dart.dev/tools/pub/dependencies
-@immutable
-@FunctionalData()
-class HostedPackageDependency extends $HostedPackageDependency {
-  /// Default constructor
-  const HostedPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.name,
-    @required this.url,
-    @required this.type,
-  });
-
-  final String package;
-  final String version;
-
-  final String name;
-  final String url;
-  final DependencyType type;
+class _Tokens {
+  static const source = 'source';
+  static const sdk = 'sdk';
+  static const version = 'version';
+  static const description = 'description';
+  static const dependency = 'dependency';
 }

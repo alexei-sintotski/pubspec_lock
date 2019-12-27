@@ -26,34 +26,29 @@
 import 'package:functional_data/functional_data.dart';
 import 'package:meta/meta.dart';
 
-import 'dependency_type.dart';
+import '../dependency_type/definition.dart';
 
-part 'git_package_dependency.g.dart';
+part 'hosted_package_dependency.g.dart';
 
 // ignore_for_file: annotate_overrides
 
-/// Git dependency as specified by https://dart.dev/tools/pub/dependencies
+/// Hosted dependency as specified by https://dart.dev/tools/pub/dependencies
 @immutable
 @FunctionalData()
-class GitPackageDependency extends $GitPackageDependency {
+class HostedPackageDependency extends $HostedPackageDependency {
   /// Default constructor
-  const GitPackageDependency({
+  const HostedPackageDependency({
     @required this.package,
     @required this.version,
-    @required this.ref,
+    @required this.name,
     @required this.url,
-    @required this.path,
-    @required this.resolvedRef,
     @required this.type,
   });
 
   final String package;
   final String version;
 
-  final String ref;
+  final String name;
   final String url;
-  final String path;
-  final String resolvedRef;
-
   final DependencyType type;
 }

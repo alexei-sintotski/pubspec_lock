@@ -7,10 +7,10 @@ part of 'pubspec_lock.dart';
 // **************************************************************************
 
 abstract class $PubspecLock {
-  Iterable<SdkDependency> get sdks;
-  Iterable<PackageDependency> get packages;
+  Iterable get sdks;
+  Iterable get packages;
   const $PubspecLock();
-  PubspecLock copyWith({Iterable<SdkDependency> sdks, Iterable<PackageDependency> packages}) =>
+  PubspecLock copyWith({Iterable sdks, Iterable packages}) =>
       PubspecLock(sdks: sdks ?? this.sdks, packages: packages ?? this.packages);
   String toString() => "PubspecLock(sdks: $sdks, packages: $packages)";
   bool operator ==(dynamic other) =>
@@ -25,12 +25,12 @@ abstract class $PubspecLock {
 }
 
 class PubspecLock$ {
-  static final sdks =
-      Lens<PubspecLock, Iterable<SdkDependency>>((s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
-  static final packages = Lens<PubspecLock, Iterable<PackageDependency>>(
-      (s_) => s_.packages, (s_, packages) => s_.copyWith(packages: packages));
+  static final sdks = Lens<PubspecLock, Iterable>((s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
+  static final packages =
+      Lens<PubspecLock, Iterable>((s_) => s_.packages, (s_, packages) => s_.copyWith(packages: packages));
 }
 
+// ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: annotate_overrides
 // ignore_for_file: avoid_annotating_with_dynamic

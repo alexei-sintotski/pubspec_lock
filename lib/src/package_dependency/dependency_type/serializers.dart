@@ -23,29 +23,36 @@
  *
  */
 
-import 'package:functional_data/functional_data.dart';
-import 'package:meta/meta.dart';
+import 'definition.dart';
 
-import 'dependency_type.dart';
+// ignore_for_file: public_member_api_docs
 
-part 'sdk_package_dependency.g.dart';
+extension StringToDependencyType on String {
+  DependencyType parseDependencyType() => _dependencyTypeMap[this];
+}
 
-// ignore_for_file: annotate_overrides
+extension DependencyTypeToJson on DependencyType {
+  String format() {
+    switch (this) {
+      case DependencyType.direct:
+        return '"${_Tokens.directMain}"';
+      case DependencyType.development:
+        return '"${_Tokens.directDev}"';
+      case DependencyType.transitive:
+        return _Tokens.transitive;
+    }
+    throw AssertionError(this);
+  }
+}
 
-/// SDK dependency as specified by https://dart.dev/tools/pub/dependencies
-@immutable
-@FunctionalData()
-class SdkPackageDependency extends $SdkPackageDependency {
-  /// Default constructor
-  const SdkPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.description,
-    @required this.type,
-  });
+const _dependencyTypeMap = <String, DependencyType>{
+  _Tokens.directMain: DependencyType.direct,
+  _Tokens.directDev: DependencyType.development,
+  _Tokens.transitive: DependencyType.transitive,
+};
 
-  final String package;
-  final String version;
-  final String description;
-  final DependencyType type;
+class _Tokens {
+  static const directMain = 'direct main';
+  static const directDev = 'direct dev';
+  static const transitive = 'transitive';
 }
