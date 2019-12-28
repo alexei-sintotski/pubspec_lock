@@ -35,6 +35,7 @@ import 'sdk_package_dependency/sdk_package_dependency.dart';
 part 'package_dependency.g.dart';
 
 /// Dependency sources as specified by https://dart.dev/tools/pub/dependencies
+@immutable
 @SumType()
 class PackageDependency extends _$PackageDependency {
   const PackageDependency.sdk(SdkPackageDependency sdk) : super(sdk: sdk);

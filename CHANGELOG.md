@@ -1,3 +1,8 @@
+## [2.0.0] - 2019-12-28
+* Migration to Dart 2.7
+* Extension method on String to create PubspecLock from YAML
+* Major refactoring to improve code modularity
+
 ## [1.1.0] - 2019-12-07
 * YAML formatting with json2yaml i.s.o. using ad-hoc YAML generator
 
