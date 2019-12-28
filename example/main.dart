@@ -18,5 +18,7 @@ void main() {
   }
 }
 
-bool isHostedByPubDev(PackageDependency package) =>
-    package.iswitcho(hosted: (package) => package.url == 'https://pub.dartlang.org', otherwise: () => false);
+bool isHostedByPubDev(PackageDependency package) => package.iswitcho(
+      hosted: (package) => package.url == 'https://pub.dartlang.org',
+      otherwise: () => false,
+    );

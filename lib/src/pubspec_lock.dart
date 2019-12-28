@@ -41,10 +41,6 @@ part 'pubspec_lock.g.dart';
 // ignore_for_file: avoid_as
 
 /// PubspecLock is a data type representing data stored in pubspec.lock files.
-/// It provides the following facilities:
-/// - Parser from pubspec.lock YAML string
-/// - Formatter to pubspec.lock YAML string
-/// - https://pub.dev/packages/functional_data is used to provide data type facilities
 @immutable
 @FunctionalData()
 class PubspecLock extends $PubspecLock {
