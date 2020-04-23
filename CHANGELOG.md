@@ -1,3 +1,6 @@
+## [2.0.1] - 2020-04-23
+* Support for functional_data 0.3.0
+
 ## [2.0.0] - 2019-12-28
 * Migration to Dart 2.7
 * Extension method on String to create PubspecLock from YAML
