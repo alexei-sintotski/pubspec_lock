@@ -6,13 +6,17 @@ part of 'path_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
+// ignore_for_file: join_return_with_assignment
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $PathPackageDependency {
+  const $PathPackageDependency();
   String get package;
   String get version;
   String get path;
   bool get relative;
   DependencyType get type;
-  const $PathPackageDependency();
   PathPackageDependency copyWith({String package, String version, String path, bool relative, DependencyType type}) =>
       PathPackageDependency(
           package: package ?? this.package,
@@ -20,8 +24,10 @@ abstract class $PathPackageDependency {
           path: path ?? this.path,
           relative: relative ?? this.relative,
           type: type ?? this.type);
+  @override
   String toString() =>
       "PathPackageDependency(package: $package, version: $version, path: $path, relative: $relative, type: $type)";
+  @override
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType &&
       package == other.package &&

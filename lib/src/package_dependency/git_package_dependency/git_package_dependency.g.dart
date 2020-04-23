@@ -6,7 +6,12 @@ part of 'git_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
+// ignore_for_file: join_return_with_assignment
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $GitPackageDependency {
+  const $GitPackageDependency();
   String get package;
   String get version;
   String get ref;
@@ -14,7 +19,6 @@ abstract class $GitPackageDependency {
   String get path;
   String get resolvedRef;
   DependencyType get type;
-  const $GitPackageDependency();
   GitPackageDependency copyWith(
           {String package,
           String version,
@@ -31,8 +35,10 @@ abstract class $GitPackageDependency {
           path: path ?? this.path,
           resolvedRef: resolvedRef ?? this.resolvedRef,
           type: type ?? this.type);
+  @override
   String toString() =>
       "GitPackageDependency(package: $package, version: $version, ref: $ref, url: $url, path: $path, resolvedRef: $resolvedRef, type: $type)";
+  @override
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType &&
       package == other.package &&
