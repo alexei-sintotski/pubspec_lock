@@ -6,13 +6,19 @@ part of 'pubspec_lock.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
+// ignore_for_file: join_return_with_assignment
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $PubspecLock {
-  Iterable get sdks;
-  Iterable get packages;
   const $PubspecLock();
-  PubspecLock copyWith({Iterable sdks, Iterable packages}) =>
+  Iterable<SdkDependency> get sdks;
+  Iterable<PackageDependency> get packages;
+  PubspecLock copyWith({Iterable<SdkDependency> sdks, Iterable<PackageDependency> packages}) =>
       PubspecLock(sdks: sdks ?? this.sdks, packages: packages ?? this.packages);
+  @override
   String toString() => "PubspecLock(sdks: $sdks, packages: $packages)";
+  @override
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType && sdks == other.sdks && packages == other.packages;
   @override
@@ -25,9 +31,10 @@ abstract class $PubspecLock {
 }
 
 class PubspecLock$ {
-  static final sdks = Lens<PubspecLock, Iterable>((s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
-  static final packages =
-      Lens<PubspecLock, Iterable>((s_) => s_.packages, (s_, packages) => s_.copyWith(packages: packages));
+  static final sdks =
+      Lens<PubspecLock, Iterable<SdkDependency>>((s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
+  static final packages = Lens<PubspecLock, Iterable<PackageDependency>>(
+      (s_) => s_.packages, (s_, packages) => s_.copyWith(packages: packages));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE

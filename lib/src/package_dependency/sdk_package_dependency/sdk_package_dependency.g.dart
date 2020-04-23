@@ -6,20 +6,26 @@ part of 'sdk_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
+// ignore_for_file: join_return_with_assignment
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $SdkPackageDependency {
+  const $SdkPackageDependency();
   String get package;
   String get version;
   String get description;
   DependencyType get type;
-  const $SdkPackageDependency();
   SdkPackageDependency copyWith({String package, String version, String description, DependencyType type}) =>
       SdkPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
           description: description ?? this.description,
           type: type ?? this.type);
+  @override
   String toString() =>
       "SdkPackageDependency(package: $package, version: $version, description: $description, type: $type)";
+  @override
   bool operator ==(dynamic other) =>
       other.runtimeType == runtimeType &&
       package == other.package &&

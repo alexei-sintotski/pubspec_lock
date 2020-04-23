@@ -6,13 +6,19 @@ part of 'sdk_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
+// ignore_for_file: join_return_with_assignment
+// ignore_for_file: avoid_classes_with_only_static_members
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $SdkDependency {
+  const $SdkDependency();
   String get sdk;
   String get version;
-  const $SdkDependency();
   SdkDependency copyWith({String sdk, String version}) =>
       SdkDependency(sdk: sdk ?? this.sdk, version: version ?? this.version);
+  @override
   String toString() => "SdkDependency(sdk: $sdk, version: $version)";
+  @override
   bool operator ==(dynamic other) => other.runtimeType == runtimeType && sdk == other.sdk && version == other.version;
   @override
   int get hashCode {
