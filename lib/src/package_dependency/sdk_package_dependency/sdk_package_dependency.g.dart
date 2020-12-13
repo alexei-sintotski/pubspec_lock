@@ -65,6 +65,7 @@ class SdkPackageDependency$ {
 // ignore_for_file: avoid_annotating_with_dynamic
 // ignore_for_file: avoid_classes_with_only_static_members
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+// ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: non_constant_identifier_names
 // ignore_for_file: prefer_asserts_with_message
 // ignore_for_file: prefer_expression_function_bodies
