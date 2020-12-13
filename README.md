@@ -1,9 +1,6 @@
 # pubspec_lock [![Build Status](https://travis-ci.org/alexei-sintotski/pubspec_lock.svg?branch=master)](https://travis-ci.org/alexei-sintotski/pubspec_lock) [![codecov](https://codecov.io/gh/alexei-sintotski/pubspec_lock/branch/master/graph/badge.svg)](https://codecov.io/gh/alexei-sintotski/pubspec_lock) [![pubspec_lock version](https://img.shields.io/pub/v/pubspec_lock?label=pubspec_lock)](https://pub.dev/packages/pubspec_lock)
 Dart library to access and manipulate content of pubpec.lock files
 
-The versions 2.x of this package require Dart 2.7.
-Consider version 1.1.0 if you intend to use the package with Dart 2.5 or 2.6.
-
 ## Data classes
 
 PubspecLock represents data stored in pubspec.lock files.
