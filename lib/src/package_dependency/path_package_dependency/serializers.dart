@@ -29,7 +29,9 @@
 import '../dependency_type/serializers.dart';
 import 'path_package_dependency.dart';
 
-PathPackageDependency loadPathPackageDependency(MapEntry<String, dynamic> entry) {
+PathPackageDependency loadPathPackageDependency(
+  MapEntry<String, dynamic> entry,
+) {
   final definition = entry.value as Map<String, dynamic>;
   final description = definition[_Tokens.description] as Map<String, dynamic>;
   return PathPackageDependency(

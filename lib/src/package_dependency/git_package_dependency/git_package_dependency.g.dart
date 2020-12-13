@@ -63,17 +63,21 @@ abstract class $GitPackageDependency {
 }
 
 class GitPackageDependency$ {
-  static final package =
-      Lens<GitPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version =
-      Lens<GitPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final ref = Lens<GitPackageDependency, String>((s_) => s_.ref, (s_, ref) => s_.copyWith(ref: ref));
-  static final url = Lens<GitPackageDependency, String>((s_) => s_.url, (s_, url) => s_.copyWith(url: url));
-  static final path = Lens<GitPackageDependency, String>((s_) => s_.path, (s_, path) => s_.copyWith(path: path));
+  static final package = Lens<GitPackageDependency, String>(
+      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+  static final version = Lens<GitPackageDependency, String>(
+      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final ref = Lens<GitPackageDependency, String>(
+      (s_) => s_.ref, (s_, ref) => s_.copyWith(ref: ref));
+  static final url = Lens<GitPackageDependency, String>(
+      (s_) => s_.url, (s_, url) => s_.copyWith(url: url));
+  static final path = Lens<GitPackageDependency, String>(
+      (s_) => s_.path, (s_, path) => s_.copyWith(path: path));
   static final resolvedRef = Lens<GitPackageDependency, String>(
-      (s_) => s_.resolvedRef, (s_, resolvedRef) => s_.copyWith(resolvedRef: resolvedRef));
-  static final type =
-      Lens<GitPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+      (s_) => s_.resolvedRef,
+      (s_, resolvedRef) => s_.copyWith(resolvedRef: resolvedRef));
+  static final type = Lens<GitPackageDependency, DependencyType>(
+      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE

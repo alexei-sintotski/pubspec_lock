@@ -17,7 +17,12 @@ abstract class $PathPackageDependency {
   String get path;
   bool get relative;
   DependencyType get type;
-  PathPackageDependency copyWith({String package, String version, String path, bool relative, DependencyType type}) =>
+  PathPackageDependency copyWith(
+          {String package,
+          String version,
+          String path,
+          bool relative,
+          DependencyType type}) =>
       PathPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
@@ -48,15 +53,16 @@ abstract class $PathPackageDependency {
 }
 
 class PathPackageDependency$ {
-  static final package =
-      Lens<PathPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version =
-      Lens<PathPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final path = Lens<PathPackageDependency, String>((s_) => s_.path, (s_, path) => s_.copyWith(path: path));
-  static final relative =
-      Lens<PathPackageDependency, bool>((s_) => s_.relative, (s_, relative) => s_.copyWith(relative: relative));
-  static final type =
-      Lens<PathPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+  static final package = Lens<PathPackageDependency, String>(
+      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+  static final version = Lens<PathPackageDependency, String>(
+      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final path = Lens<PathPackageDependency, String>(
+      (s_) => s_.path, (s_, path) => s_.copyWith(path: path));
+  static final relative = Lens<PathPackageDependency, bool>(
+      (s_) => s_.relative, (s_, relative) => s_.copyWith(relative: relative));
+  static final type = Lens<PathPackageDependency, DependencyType>(
+      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
