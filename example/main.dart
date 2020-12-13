@@ -8,7 +8,10 @@ void main() {
   final pubspecLock = File('pubspec.lock').readAsStringSync().loadPubspecLockFromYaml();
   print('Loaded pubspec.lock with ${pubspecLock.packages.length} package dependencies:');
 
-  final depsNotHostedByPubDev = [for (final package in pubspecLock.packages) if (!isHostedByPubDev(package)) package];
+  final depsNotHostedByPubDev = [
+    for (final package in pubspecLock.packages)
+      if (!isHostedByPubDev(package)) package
+  ];
 
   if (depsNotHostedByPubDev.isEmpty) {
     print('SUCCESS: All dependencies are hosted by pub.dev');
