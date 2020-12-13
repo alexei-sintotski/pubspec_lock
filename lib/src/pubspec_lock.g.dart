@@ -14,13 +14,17 @@ abstract class $PubspecLock {
   const $PubspecLock();
   Iterable<SdkDependency> get sdks;
   Iterable<PackageDependency> get packages;
-  PubspecLock copyWith({Iterable<SdkDependency> sdks, Iterable<PackageDependency> packages}) =>
+  PubspecLock copyWith(
+          {Iterable<SdkDependency> sdks,
+          Iterable<PackageDependency> packages}) =>
       PubspecLock(sdks: sdks ?? this.sdks, packages: packages ?? this.packages);
   @override
   String toString() => "PubspecLock(sdks: $sdks, packages: $packages)";
   @override
   bool operator ==(dynamic other) =>
-      other.runtimeType == runtimeType && sdks == other.sdks && packages == other.packages;
+      other.runtimeType == runtimeType &&
+      sdks == other.sdks &&
+      packages == other.packages;
   @override
   int get hashCode {
     var result = 17;
@@ -31,8 +35,8 @@ abstract class $PubspecLock {
 }
 
 class PubspecLock$ {
-  static final sdks =
-      Lens<PubspecLock, Iterable<SdkDependency>>((s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
+  static final sdks = Lens<PubspecLock, Iterable<SdkDependency>>(
+      (s_) => s_.sdks, (s_, sdks) => s_.copyWith(sdks: sdks));
   static final packages = Lens<PubspecLock, Iterable<PackageDependency>>(
       (s_) => s_.packages, (s_, packages) => s_.copyWith(packages: packages));
 }

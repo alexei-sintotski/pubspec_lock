@@ -59,8 +59,10 @@ class PubspecLock extends $PubspecLock {
       '\n';
 
   Map<String, dynamic> _toJson(PubspecLock pubspecLock) => <String, dynamic>{
-        if (pubspecLock.packages.isNotEmpty) _Tokens.packages: _packagesToJson(pubspecLock.packages),
-        if (pubspecLock.sdks.isNotEmpty) _Tokens.sdks: _sdksToJson(pubspecLock.sdks),
+        if (pubspecLock.packages.isNotEmpty)
+          _Tokens.packages: _packagesToJson(pubspecLock.packages),
+        if (pubspecLock.sdks.isNotEmpty)
+          _Tokens.sdks: _sdksToJson(pubspecLock.sdks),
       };
 }
 
@@ -68,23 +70,38 @@ class PubspecLock extends $PubspecLock {
 extension PubspecLockFromYamlString on String {
   /// Creates a PubspecLock object from a YAML string
   PubspecLock loadPubspecLockFromYaml() {
-    final jsonMap = json.decode(json.encode(loadYaml(this))) as Map<String, dynamic>;
-    return PubspecLock(packages: _loadPackages(jsonMap), sdks: _loadSdks(jsonMap));
+    final dynamic yaml = loadYaml(this);
+    final jsonMap = json.decode(json.encode(yaml)) as Map<String, dynamic>;
+    return PubspecLock(
+      packages: _loadPackages(jsonMap),
+      sdks: _loadSdks(jsonMap),
+    );
   }
 }
 
 Iterable<PackageDependency> _loadPackages(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.packages] as Map<String, dynamic>) ?? <String, dynamic>{}).entries.map(loadPackageDependency);
+    ((jsonMap[_Tokens.packages] as Map<String, dynamic>) ?? <String, dynamic>{})
+        .entries
+        .map(loadPackageDependency);
 
 Iterable<SdkDependency> _loadSdks(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>) ?? <String, dynamic>{}).entries.map(loadSdkDependency);
+    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>) ?? <String, dynamic>{})
+        .entries
+        .map(loadSdkDependency);
 
-Map<String, dynamic> _packagesToJson(Iterable<PackageDependency> packages) => <String, dynamic>{
-      for (final package in packages.toList()..sort((a, b) => a.package().compareTo(b.package()))) ...package.toJson()
+Map<String, dynamic> _packagesToJson(Iterable<PackageDependency> packages) =>
+    <String, dynamic>{
+      for (final package
+          in packages.toList()
+            ..sort((a, b) => a.package().compareTo(b.package())))
+        ...package.toJson()
     };
 
 Map<String, dynamic> _sdksToJson(Iterable<SdkDependency> sdks) =>
-    <String, dynamic>{for (final entry in sdks.toList()..sort((a, b) => a.sdk.compareTo(b.sdk))) ...entry.toJson()};
+    <String, dynamic>{
+      for (final entry in sdks.toList()..sort((a, b) => a.sdk.compareTo(b.sdk)))
+        ...entry.toJson()
+    };
 
 class _Tokens {
   static const sdks = 'sdks';

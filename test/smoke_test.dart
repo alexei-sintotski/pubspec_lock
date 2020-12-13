@@ -31,7 +31,8 @@ import 'package:test/test.dart';
 // ignore_for_file: avoid_as
 
 void main() {
-  final realisticContent = File('${gitRepoRoot()}/pubspec.lock').readAsStringSync();
+  final realisticContent =
+      File('${gitRepoRoot()}/pubspec.lock').readAsStringSync();
 
   group('$PubspecLock().loadFromYamlString', () {
     group('given realistic pubspec.lock content', () {
@@ -50,4 +51,6 @@ void main() {
 }
 
 // ignore: avoid_as
-String gitRepoRoot() => (Process.runSync('git', ['rev-parse', '--show-toplevel']).stdout as String).trim();
+String gitRepoRoot() =>
+    (Process.runSync('git', ['rev-parse', '--show-toplevel']).stdout as String)
+        .trim();

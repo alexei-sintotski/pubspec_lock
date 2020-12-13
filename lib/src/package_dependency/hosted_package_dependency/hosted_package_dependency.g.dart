@@ -17,7 +17,12 @@ abstract class $HostedPackageDependency {
   String get name;
   String get url;
   DependencyType get type;
-  HostedPackageDependency copyWith({String package, String version, String name, String url, DependencyType type}) =>
+  HostedPackageDependency copyWith(
+          {String package,
+          String version,
+          String name,
+          String url,
+          DependencyType type}) =>
       HostedPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
@@ -48,14 +53,16 @@ abstract class $HostedPackageDependency {
 }
 
 class HostedPackageDependency$ {
-  static final package =
-      Lens<HostedPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version =
-      Lens<HostedPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final name = Lens<HostedPackageDependency, String>((s_) => s_.name, (s_, name) => s_.copyWith(name: name));
-  static final url = Lens<HostedPackageDependency, String>((s_) => s_.url, (s_, url) => s_.copyWith(url: url));
-  static final type =
-      Lens<HostedPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+  static final package = Lens<HostedPackageDependency, String>(
+      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+  static final version = Lens<HostedPackageDependency, String>(
+      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final name = Lens<HostedPackageDependency, String>(
+      (s_) => s_.name, (s_, name) => s_.copyWith(name: name));
+  static final url = Lens<HostedPackageDependency, String>(
+      (s_) => s_.url, (s_, url) => s_.copyWith(url: url));
+  static final type = Lens<HostedPackageDependency, DependencyType>(
+      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE

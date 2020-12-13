@@ -19,13 +19,25 @@ abstract class _$PackageDependency {
   static PackageDependency load<$T extends PackageDependencyRecordBase<$T>>(
     $T rec,
   ) {
-    if (rec.sdk != null && rec.hosted == null && rec.git == null && rec.path == null) {
+    if (rec.sdk != null &&
+        rec.hosted == null &&
+        rec.git == null &&
+        rec.path == null) {
       return PackageDependency.sdk(rec.sdk);
-    } else if (rec.sdk == null && rec.hosted != null && rec.git == null && rec.path == null) {
+    } else if (rec.sdk == null &&
+        rec.hosted != null &&
+        rec.git == null &&
+        rec.path == null) {
       return PackageDependency.hosted(rec.hosted);
-    } else if (rec.sdk == null && rec.hosted == null && rec.git != null && rec.path == null) {
+    } else if (rec.sdk == null &&
+        rec.hosted == null &&
+        rec.git != null &&
+        rec.path == null) {
       return PackageDependency.git(rec.git);
-    } else if (rec.sdk == null && rec.hosted == null && rec.git == null && rec.path != null) {
+    } else if (rec.sdk == null &&
+        rec.hosted == null &&
+        rec.git == null &&
+        rec.path != null) {
       return PackageDependency.path(rec.path);
     } else {
       throw Exception("Cannot select a $PackageDependency case given $rec");
@@ -64,7 +76,8 @@ abstract class _$PackageDependency {
     } else if (this.path != null) {
       return path(this.path);
     } else {
-      throw StateError("an instance of $PackageDependency has no case selected");
+      throw StateError(
+          "an instance of $PackageDependency has no case selected");
     }
   }
 

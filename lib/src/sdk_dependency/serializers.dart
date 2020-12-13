@@ -28,7 +28,8 @@
 
 import 'sdk_dependency.dart';
 
-SdkDependency loadSdkDependency(MapEntry<String, dynamic> entry) => SdkDependency(
+SdkDependency loadSdkDependency(MapEntry<String, dynamic> entry) =>
+    SdkDependency(
       sdk: entry.key,
       version: entry.value as String,
     );

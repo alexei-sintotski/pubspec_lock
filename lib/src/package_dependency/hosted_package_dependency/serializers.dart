@@ -29,7 +29,9 @@
 import '../dependency_type/serializers.dart';
 import 'hosted_package_dependency.dart';
 
-HostedPackageDependency loadHostedPackageDependency(MapEntry<String, dynamic> entry) {
+HostedPackageDependency loadHostedPackageDependency(
+  MapEntry<String, dynamic> entry,
+) {
   final definition = entry.value as Map<String, dynamic>;
   final description = definition[_Tokens.description] as Map<String, dynamic>;
   return HostedPackageDependency(

@@ -19,7 +19,10 @@ abstract class $SdkDependency {
   @override
   String toString() => "SdkDependency(sdk: $sdk, version: $version)";
   @override
-  bool operator ==(dynamic other) => other.runtimeType == runtimeType && sdk == other.sdk && version == other.version;
+  bool operator ==(dynamic other) =>
+      other.runtimeType == runtimeType &&
+      sdk == other.sdk &&
+      version == other.version;
   @override
   int get hashCode {
     var result = 17;
@@ -30,9 +33,10 @@ abstract class $SdkDependency {
 }
 
 class SdkDependency$ {
-  static final sdk = Lens<SdkDependency, String>((s_) => s_.sdk, (s_, sdk) => s_.copyWith(sdk: sdk));
-  static final version =
-      Lens<SdkDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final sdk = Lens<SdkDependency, String>(
+      (s_) => s_.sdk, (s_, sdk) => s_.copyWith(sdk: sdk));
+  static final version = Lens<SdkDependency, String>(
+      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE

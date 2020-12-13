@@ -16,7 +16,11 @@ abstract class $SdkPackageDependency {
   String get version;
   String get description;
   DependencyType get type;
-  SdkPackageDependency copyWith({String package, String version, String description, DependencyType type}) =>
+  SdkPackageDependency copyWith(
+          {String package,
+          String version,
+          String description,
+          DependencyType type}) =>
       SdkPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
@@ -44,14 +48,15 @@ abstract class $SdkPackageDependency {
 }
 
 class SdkPackageDependency$ {
-  static final package =
-      Lens<SdkPackageDependency, String>((s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version =
-      Lens<SdkPackageDependency, String>((s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+  static final package = Lens<SdkPackageDependency, String>(
+      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+  static final version = Lens<SdkPackageDependency, String>(
+      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
   static final description = Lens<SdkPackageDependency, String>(
-      (s_) => s_.description, (s_, description) => s_.copyWith(description: description));
-  static final type =
-      Lens<SdkPackageDependency, DependencyType>((s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+      (s_) => s_.description,
+      (s_, description) => s_.copyWith(description: description));
+  static final type = Lens<SdkPackageDependency, DependencyType>(
+      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
 }
 
 // ignore_for_file: ARGUMENT_TYPE_NOT_ASSIGNABLE
