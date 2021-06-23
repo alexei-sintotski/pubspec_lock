@@ -90,7 +90,7 @@ bool isSdkDependency(PackageDependency dependency) => dependency.iswitcho(
       otherwise: () => false,
     );
 
-SdkPackageDependency sdkPackageDependency(PackageDependency dependency) =>
+SdkPackageDependency? sdkPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       sdk: (d) => d,
       otherwise: () => null,

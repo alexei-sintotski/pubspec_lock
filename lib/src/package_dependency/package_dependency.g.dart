@@ -23,22 +23,22 @@ abstract class _$PackageDependency {
         rec.hosted == null &&
         rec.git == null &&
         rec.path == null) {
-      return PackageDependency.sdk(rec.sdk);
+      return PackageDependency.sdk(rec.sdk!);
     } else if (rec.sdk == null &&
         rec.hosted != null &&
         rec.git == null &&
         rec.path == null) {
-      return PackageDependency.hosted(rec.hosted);
+      return PackageDependency.hosted(rec.hosted!);
     } else if (rec.sdk == null &&
         rec.hosted == null &&
         rec.git != null &&
         rec.path == null) {
-      return PackageDependency.git(rec.git);
+      return PackageDependency.git(rec.git!);
     } else if (rec.sdk == null &&
         rec.hosted == null &&
         rec.git == null &&
         rec.path != null) {
-      return PackageDependency.path(rec.path);
+      return PackageDependency.path(rec.path!);
     } else {
       throw Exception("Cannot select a $PackageDependency case given $rec");
     }
@@ -46,10 +46,10 @@ abstract class _$PackageDependency {
 
   $T dump<$T>(
     $T Function({
-      SdkPackageDependency sdk,
-      HostedPackageDependency hosted,
-      GitPackageDependency git,
-      PathPackageDependency path,
+      SdkPackageDependency? sdk,
+      HostedPackageDependency? hosted,
+      GitPackageDependency? git,
+      PathPackageDependency? path,
     })
         make,
   ) {
@@ -62,19 +62,19 @@ abstract class _$PackageDependency {
   }
 
   $T iswitch<$T>({
-    @required $T Function(SdkPackageDependency) sdk,
-    @required $T Function(HostedPackageDependency) hosted,
-    @required $T Function(GitPackageDependency) git,
-    @required $T Function(PathPackageDependency) path,
+    required $T Function(SdkPackageDependency) sdk,
+    required $T Function(HostedPackageDependency) hosted,
+    required $T Function(GitPackageDependency) git,
+    required $T Function(PathPackageDependency) path,
   }) {
     if (this.sdk != null) {
-      return sdk(this.sdk);
+      return sdk(this.sdk!);
     } else if (this.hosted != null) {
-      return hosted(this.hosted);
+      return hosted(this.hosted!);
     } else if (this.git != null) {
-      return git(this.git);
+      return git(this.git!);
     } else if (this.path != null) {
-      return path(this.path);
+      return path(this.path!);
     } else {
       throw StateError(
           "an instance of $PackageDependency has no case selected");
@@ -82,13 +82,13 @@ abstract class _$PackageDependency {
   }
 
   $T iswitcho<$T>({
-    $T Function(SdkPackageDependency) sdk,
-    $T Function(HostedPackageDependency) hosted,
-    $T Function(GitPackageDependency) git,
-    $T Function(PathPackageDependency) path,
-    @required $T Function() otherwise,
+    $T Function(SdkPackageDependency)? sdk,
+    $T Function(HostedPackageDependency)? hosted,
+    $T Function(GitPackageDependency)? git,
+    $T Function(PathPackageDependency)? path,
+    required $T Function() otherwise,
   }) {
-    $T _otherwise(Object _) => otherwise();
+    $T _otherwise(Object? _) => otherwise();
     return iswitch(
       sdk: sdk ?? _otherwise,
       hosted: hosted ?? _otherwise,
@@ -130,28 +130,18 @@ abstract class _$PackageDependency {
   }
 
   @protected
-  final SdkPackageDependency sdk;
+  final SdkPackageDependency? sdk;
   @protected
-  final HostedPackageDependency hosted;
+  final HostedPackageDependency? hosted;
   @protected
-  final GitPackageDependency git;
+  final GitPackageDependency? git;
   @protected
-  final PathPackageDependency path;
+  final PathPackageDependency? path;
 }
 
 abstract class PackageDependencyRecordBase<Self> {
-  SdkPackageDependency get sdk;
-  HostedPackageDependency get hosted;
-  GitPackageDependency get git;
-  PathPackageDependency get path;
+  SdkPackageDependency? get sdk;
+  HostedPackageDependency? get hosted;
+  GitPackageDependency? get git;
+  PathPackageDependency? get path;
 }
-
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: avoid_annotating_with_dynamic
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
-// ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: prefer_asserts_with_message
-// ignore_for_file: prefer_expression_function_bodies
-// ignore_for_file: prefer_single_quotes
-// ignore_for_file: public_member_api_docs
-// ignore_for_file: unused_element

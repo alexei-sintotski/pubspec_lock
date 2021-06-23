@@ -27,11 +27,11 @@ import 'definition.dart';
 
 // ignore_for_file: public_member_api_docs
 
-extension StringToDependencyType on String {
-  DependencyType parseDependencyType() => _dependencyTypeMap[this];
+extension StringToDependencyType on String? {
+  DependencyType? parseDependencyType() => _dependencyTypeMap[this!];
 }
 
-extension DependencyTypeToJson on DependencyType {
+extension DependencyTypeToJson on DependencyType? {
   String format() {
     switch (this) {
       case DependencyType.direct:
@@ -40,8 +40,9 @@ extension DependencyTypeToJson on DependencyType {
         return '"${_Tokens.directDev}"';
       case DependencyType.transitive:
         return _Tokens.transitive;
+      case null:
+        throw AssertionError(this);
     }
-    throw AssertionError(this);
   }
 }
 

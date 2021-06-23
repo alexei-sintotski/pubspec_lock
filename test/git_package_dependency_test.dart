@@ -102,7 +102,7 @@ bool isGitDependency(PackageDependency dependency) => dependency.iswitcho(
       otherwise: () => false,
     );
 
-GitPackageDependency gitPackageDependency(PackageDependency dependency) =>
+GitPackageDependency? gitPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       git: (d) => d,
       otherwise: () => null,

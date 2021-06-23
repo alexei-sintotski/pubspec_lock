@@ -6,41 +6,45 @@ part of 'hosted_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
-// ignore_for_file: join_return_with_assignment
-// ignore_for_file: avoid_classes_with_only_static_members
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $HostedPackageDependency {
   const $HostedPackageDependency();
+
   String get package;
-  String get version;
-  String get name;
-  String get url;
-  DependencyType get type;
+  String? get version;
+  String? get name;
+  String? get url;
+  DependencyType? get type;
+
   HostedPackageDependency copyWith(
-          {String package,
-          String version,
-          String name,
-          String url,
-          DependencyType type}) =>
+          {String? package,
+          String? version,
+          String? name,
+          String? url,
+          DependencyType? type}) =>
       HostedPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
           name: name ?? this.name,
           url: url ?? this.url,
           type: type ?? this.type);
+
   @override
   String toString() =>
       "HostedPackageDependency(package: $package, version: $version, name: $name, url: $url, type: $type)";
+
   @override
-  bool operator ==(dynamic other) =>
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      other is HostedPackageDependency &&
       other.runtimeType == runtimeType &&
       package == other.package &&
       version == other.version &&
       name == other.name &&
       url == other.url &&
       type == other.type;
+
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode {
     var result = 17;
     result = 37 * result + package.hashCode;
@@ -52,25 +56,30 @@ abstract class $HostedPackageDependency {
   }
 }
 
+// ignore: avoid_classes_with_only_static_members
 class HostedPackageDependency$ {
   static final package = Lens<HostedPackageDependency, String>(
-      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version = Lens<HostedPackageDependency, String>(
-      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final name = Lens<HostedPackageDependency, String>(
-      (s_) => s_.name, (s_, name) => s_.copyWith(name: name));
-  static final url = Lens<HostedPackageDependency, String>(
-      (s_) => s_.url, (s_, url) => s_.copyWith(url: url));
-  static final type = Lens<HostedPackageDependency, DependencyType>(
-      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
-}
+    (packageContainer) => packageContainer.package,
+    (packageContainer, package) => packageContainer.copyWith(package: package),
+  );
 
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: avoid_annotating_with_dynamic
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
-// ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: prefer_asserts_with_message
-// ignore_for_file: prefer_expression_function_bodies
-// ignore_for_file: prefer_single_quotes
-// ignore_for_file: public_member_api_docs
-// ignore_for_file: unused_element
+  static final version = Lens<HostedPackageDependency, String?>(
+    (versionContainer) => versionContainer.version,
+    (versionContainer, version) => versionContainer.copyWith(version: version),
+  );
+
+  static final name = Lens<HostedPackageDependency, String?>(
+    (nameContainer) => nameContainer.name,
+    (nameContainer, name) => nameContainer.copyWith(name: name),
+  );
+
+  static final url = Lens<HostedPackageDependency, String?>(
+    (urlContainer) => urlContainer.url,
+    (urlContainer, url) => urlContainer.copyWith(url: url),
+  );
+
+  static final type = Lens<HostedPackageDependency, DependencyType?>(
+    (typeContainer) => typeContainer.type,
+    (typeContainer, type) => typeContainer.copyWith(type: type),
+  );
+}

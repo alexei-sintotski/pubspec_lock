@@ -34,7 +34,7 @@ import 'sdk_package_dependency/serializers.dart';
 
 PackageDependency loadPackageDependency(MapEntry<String, dynamic> entry) {
   final definition = entry.value as Map<String, dynamic>;
-  final source = definition[_Tokens.source] as String;
+  final source = definition[_Tokens.source] as String?;
   if (source == _Tokens.sdk) {
     return PackageDependency.sdk(loadSdkPackageDependency(entry));
   } else if (source == _Tokens.hosted) {

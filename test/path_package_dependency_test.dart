@@ -94,7 +94,7 @@ bool isPathDependency(PackageDependency dependency) => dependency.iswitcho(
       otherwise: () => false,
     );
 
-PathPackageDependency pathPackageDependency(PackageDependency dependency) =>
+PathPackageDependency? pathPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       path: (d) => d,
       otherwise: () => null,

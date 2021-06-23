@@ -36,10 +36,10 @@ PathPackageDependency loadPathPackageDependency(
   final description = definition[_Tokens.description] as Map<String, dynamic>;
   return PathPackageDependency(
     package: entry.key,
-    version: definition[_Tokens.version] as String,
-    path: description[_Tokens.path] as String,
-    relative: description[_Tokens.relative] as bool,
-    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+    version: definition[_Tokens.version] as String?,
+    path: description[_Tokens.path] as String?,
+    relative: description[_Tokens.relative] as bool?,
+    type: (definition[_Tokens.dependency] as String?).parseDependencyType(),
   );
 }
 

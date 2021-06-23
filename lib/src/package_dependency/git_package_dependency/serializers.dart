@@ -34,12 +34,12 @@ GitPackageDependency loadGitPackageDependency(MapEntry<String, dynamic> entry) {
   final description = definition[_Tokens.description] as Map<String, dynamic>;
   return GitPackageDependency(
     package: entry.key,
-    version: definition[_Tokens.version] as String,
-    ref: description[_Tokens.ref] as String,
-    url: description[_Tokens.url] as String,
-    path: description[_Tokens.path] as String,
-    resolvedRef: description[_Tokens.resolvedRef] as String,
-    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+    version: definition[_Tokens.version] as String?,
+    ref: description[_Tokens.ref] as String?,
+    url: description[_Tokens.url] as String?,
+    path: description[_Tokens.path] as String?,
+    resolvedRef: description[_Tokens.resolvedRef] as String?,
+    type: (definition[_Tokens.dependency] as String?).parseDependencyType(),
   );
 }
 

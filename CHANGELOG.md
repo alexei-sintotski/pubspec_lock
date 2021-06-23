@@ -1,3 +1,6 @@
+## [3.0.0] 
+* Migrate to null safety
+
 ## [2.0.1+1] - Dart 2.10 and pub.dev compliance
 
 ## [2.0.1] - 2020-04-23

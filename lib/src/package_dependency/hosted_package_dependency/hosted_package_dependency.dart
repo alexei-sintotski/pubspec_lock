@@ -38,17 +38,17 @@ part 'hosted_package_dependency.g.dart';
 class HostedPackageDependency extends $HostedPackageDependency {
   /// Default constructor
   const HostedPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.name,
-    @required this.url,
-    @required this.type,
+    required this.package,
+    required this.version,
+    required this.name,
+    required this.url,
+    required this.type,
   });
 
   final String package;
-  final String version;
+  final String? version;
 
-  final String name;
-  final String url;
-  final DependencyType type;
+  final String? name;
+  final String? url;
+  final DependencyType? type;
 }

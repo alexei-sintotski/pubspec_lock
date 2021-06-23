@@ -26,7 +26,6 @@
 import 'dart:convert';
 
 import 'package:functional_data/functional_data.dart';
-import 'package:json2yaml/json2yaml.dart';
 import 'package:meta/meta.dart';
 import 'package:yaml/yaml.dart';
 
@@ -80,12 +79,13 @@ extension PubspecLockFromYamlString on String {
 }
 
 Iterable<PackageDependency> _loadPackages(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.packages] as Map<String, dynamic>) ?? <String, dynamic>{})
+    // ignore: lines_longer_than_80_chars
+    ((jsonMap[_Tokens.packages] as Map<String, dynamic>?) ?? <String, dynamic>{})
         .entries
         .map(loadPackageDependency);
 
 Iterable<SdkDependency> _loadSdks(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>) ?? <String, dynamic>{})
+    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>?) ?? <String, dynamic>{})
         .entries
         .map(loadSdkDependency);
 

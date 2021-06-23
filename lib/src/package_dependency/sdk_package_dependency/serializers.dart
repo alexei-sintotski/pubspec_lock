@@ -33,9 +33,9 @@ SdkPackageDependency loadSdkPackageDependency(MapEntry<String, dynamic> entry) {
   final definition = entry.value as Map<String, dynamic>;
   return SdkPackageDependency(
     package: entry.key,
-    version: definition[_Tokens.version] as String,
-    description: definition[_Tokens.description] as String,
-    type: (definition[_Tokens.dependency] as String).parseDependencyType(),
+    version: definition[_Tokens.version] as String?,
+    description: definition[_Tokens.description] as String?,
+    type: (definition[_Tokens.dependency] as String?).parseDependencyType(),
   );
 }
 

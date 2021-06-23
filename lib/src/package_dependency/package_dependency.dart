@@ -53,7 +53,7 @@ class PackageDependency extends _$PackageDependency {
       );
 
   /// Provides package dependency version
-  String version() => iswitch(
+  String? version() => iswitch(
         sdk: (d) => d.version,
         hosted: (d) => d.version,
         git: (d) => d.version,
@@ -61,7 +61,7 @@ class PackageDependency extends _$PackageDependency {
       );
 
   /// Provides package dependency type -- direct, development, or transitive
-  DependencyType type() => iswitch(
+  DependencyType? type() => iswitch(
         sdk: (d) => d.type,
         hosted: (d) => d.type,
         git: (d) => d.type,

@@ -94,7 +94,8 @@ bool isHostedDependency(PackageDependency dependency) => dependency.iswitcho(
       otherwise: () => false,
     );
 
-HostedPackageDependency hostedPackageDependency(PackageDependency dependency) =>
+// ignore: lines_longer_than_80_chars
+HostedPackageDependency? hostedPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       hosted: (d) => d,
       otherwise: () => null,

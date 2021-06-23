@@ -6,37 +6,41 @@ part of 'sdk_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
-// ignore_for_file: join_return_with_assignment
-// ignore_for_file: avoid_classes_with_only_static_members
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $SdkPackageDependency {
   const $SdkPackageDependency();
+
   String get package;
-  String get version;
-  String get description;
-  DependencyType get type;
+  String? get version;
+  String? get description;
+  DependencyType? get type;
+
   SdkPackageDependency copyWith(
-          {String package,
-          String version,
-          String description,
-          DependencyType type}) =>
+          {String? package,
+          String? version,
+          String? description,
+          DependencyType? type}) =>
       SdkPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
           description: description ?? this.description,
           type: type ?? this.type);
+
   @override
   String toString() =>
       "SdkPackageDependency(package: $package, version: $version, description: $description, type: $type)";
+
   @override
-  bool operator ==(dynamic other) =>
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      other is SdkPackageDependency &&
       other.runtimeType == runtimeType &&
       package == other.package &&
       version == other.version &&
       description == other.description &&
       type == other.type;
+
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode {
     var result = 17;
     result = 37 * result + package.hashCode;
@@ -47,24 +51,26 @@ abstract class $SdkPackageDependency {
   }
 }
 
+// ignore: avoid_classes_with_only_static_members
 class SdkPackageDependency$ {
   static final package = Lens<SdkPackageDependency, String>(
-      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
-  static final version = Lens<SdkPackageDependency, String>(
-      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
-  static final description = Lens<SdkPackageDependency, String>(
-      (s_) => s_.description,
-      (s_, description) => s_.copyWith(description: description));
-  static final type = Lens<SdkPackageDependency, DependencyType>(
-      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
-}
+    (packageContainer) => packageContainer.package,
+    (packageContainer, package) => packageContainer.copyWith(package: package),
+  );
 
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: avoid_annotating_with_dynamic
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
-// ignore_for_file: lines_longer_than_80_chars
-// ignore_for_file: prefer_asserts_with_message
-// ignore_for_file: prefer_expression_function_bodies
-// ignore_for_file: prefer_single_quotes
-// ignore_for_file: public_member_api_docs
-// ignore_for_file: unused_element
+  static final version = Lens<SdkPackageDependency, String?>(
+    (versionContainer) => versionContainer.version,
+    (versionContainer, version) => versionContainer.copyWith(version: version),
+  );
+
+  static final description = Lens<SdkPackageDependency, String?>(
+    (descriptionContainer) => descriptionContainer.description,
+    (descriptionContainer, description) =>
+        descriptionContainer.copyWith(description: description),
+  );
+
+  static final type = Lens<SdkPackageDependency, DependencyType?>(
+    (typeContainer) => typeContainer.type,
+    (typeContainer, type) => typeContainer.copyWith(type: type),
+  );
+}
