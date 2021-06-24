@@ -6,41 +6,45 @@ part of 'path_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
-// ignore_for_file: join_return_with_assignment
-// ignore_for_file: avoid_classes_with_only_static_members
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $PathPackageDependency {
   const $PathPackageDependency();
+
   String get package;
   String get version;
   String get path;
   bool get relative;
   DependencyType get type;
+
   PathPackageDependency copyWith(
-          {String package,
-          String version,
-          String path,
-          bool relative,
-          DependencyType type}) =>
+          {String? package,
+          String? version,
+          String? path,
+          bool? relative,
+          DependencyType? type}) =>
       PathPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
           path: path ?? this.path,
           relative: relative ?? this.relative,
           type: type ?? this.type);
+
   @override
   String toString() =>
       "PathPackageDependency(package: $package, version: $version, path: $path, relative: $relative, type: $type)";
+
   @override
-  bool operator ==(dynamic other) =>
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      other is PathPackageDependency &&
       other.runtimeType == runtimeType &&
       package == other.package &&
       version == other.version &&
       path == other.path &&
       relative == other.relative &&
       type == other.type;
+
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode {
     var result = 17;
     result = 37 * result + package.hashCode;
@@ -52,22 +56,40 @@ abstract class $PathPackageDependency {
   }
 }
 
+// ignore: avoid_classes_with_only_static_members
 class PathPackageDependency$ {
   static final package = Lens<PathPackageDependency, String>(
-      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+    (packageContainer) => packageContainer.package,
+    (packageContainer, package) => packageContainer.copyWith(package: package),
+  );
+
   static final version = Lens<PathPackageDependency, String>(
-      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+    (versionContainer) => versionContainer.version,
+    (versionContainer, version) => versionContainer.copyWith(version: version),
+  );
+
   static final path = Lens<PathPackageDependency, String>(
-      (s_) => s_.path, (s_, path) => s_.copyWith(path: path));
+    (pathContainer) => pathContainer.path,
+    (pathContainer, path) => pathContainer.copyWith(path: path),
+  );
+
   static final relative = Lens<PathPackageDependency, bool>(
-      (s_) => s_.relative, (s_, relative) => s_.copyWith(relative: relative));
+    (relativeContainer) => relativeContainer.relative,
+    (relativeContainer, relative) =>
+        relativeContainer.copyWith(relative: relative),
+  );
+
   static final type = Lens<PathPackageDependency, DependencyType>(
-      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+    (typeContainer) => typeContainer.type,
+    (typeContainer, type) => typeContainer.copyWith(type: type),
+  );
 }
 
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: avoid_dynamic_calls
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+// ignore_for_file: duplicate_ignore
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: prefer_asserts_with_message
 // ignore_for_file: prefer_expression_function_bodies

@@ -50,7 +50,6 @@ void main() {
   });
 }
 
-// ignore: avoid_as
 String gitRepoRoot() =>
     (Process.runSync('git', ['rev-parse', '--show-toplevel']).stdout as String)
         .trim();

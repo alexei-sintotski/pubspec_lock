@@ -28,7 +28,7 @@ import 'definition.dart';
 // ignore_for_file: public_member_api_docs
 
 extension StringToDependencyType on String {
-  DependencyType parseDependencyType() => _dependencyTypeMap[this];
+  DependencyType parseDependencyType() => _dependencyTypeMap[this]!;
 }
 
 extension DependencyTypeToJson on DependencyType {
@@ -41,7 +41,6 @@ extension DependencyTypeToJson on DependencyType {
       case DependencyType.transitive:
         return _Tokens.transitive;
     }
-    throw AssertionError(this);
   }
 }
 

@@ -38,13 +38,13 @@ part 'git_package_dependency.g.dart';
 class GitPackageDependency extends $GitPackageDependency {
   /// Default constructor
   const GitPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.ref,
-    @required this.url,
-    @required this.path,
-    @required this.resolvedRef,
-    @required this.type,
+    required this.package,
+    required this.version,
+    required this.ref,
+    required this.url,
+    required this.path,
+    required this.resolvedRef,
+    required this.type,
   });
 
   final String package;

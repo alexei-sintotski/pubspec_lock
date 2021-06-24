@@ -93,5 +93,6 @@ bool isSdkDependency(PackageDependency dependency) => dependency.iswitcho(
 SdkPackageDependency sdkPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       sdk: (d) => d,
-      otherwise: () => null,
+      otherwise: () =>
+          throw AssertionError('Expected SdkPackageDependency: $dependency'),
     );

@@ -38,10 +38,10 @@ part 'sdk_package_dependency.g.dart';
 class SdkPackageDependency extends $SdkPackageDependency {
   /// Default constructor
   const SdkPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.description,
-    @required this.type,
+    required this.package,
+    required this.version,
+    required this.description,
+    required this.type,
   });
 
   final String package;

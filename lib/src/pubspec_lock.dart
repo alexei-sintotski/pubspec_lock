@@ -80,12 +80,13 @@ extension PubspecLockFromYamlString on String {
 }
 
 Iterable<PackageDependency> _loadPackages(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.packages] as Map<String, dynamic>) ?? <String, dynamic>{})
+    ((jsonMap[_Tokens.packages] as Map<String, dynamic>?) ??
+            <String, dynamic>{})
         .entries
         .map(loadPackageDependency);
 
 Iterable<SdkDependency> _loadSdks(Map<String, dynamic> jsonMap) =>
-    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>) ?? <String, dynamic>{})
+    ((jsonMap[_Tokens.sdks] as Map<String, dynamic>?) ?? <String, dynamic>{})
         .entries
         .map(loadSdkDependency);
 
