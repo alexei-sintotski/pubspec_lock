@@ -6,12 +6,9 @@ part of 'git_package_dependency.dart';
 // FunctionalDataGenerator
 // **************************************************************************
 
-// ignore_for_file: join_return_with_assignment
-// ignore_for_file: avoid_classes_with_only_static_members
-// ignore_for_file: non_constant_identifier_names
-// ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 abstract class $GitPackageDependency {
   const $GitPackageDependency();
+
   String get package;
   String get version;
   String get ref;
@@ -19,14 +16,15 @@ abstract class $GitPackageDependency {
   String get path;
   String get resolvedRef;
   DependencyType get type;
+
   GitPackageDependency copyWith(
-          {String package,
-          String version,
-          String ref,
-          String url,
-          String path,
-          String resolvedRef,
-          DependencyType type}) =>
+          {String? package,
+          String? version,
+          String? ref,
+          String? url,
+          String? path,
+          String? resolvedRef,
+          DependencyType? type}) =>
       GitPackageDependency(
           package: package ?? this.package,
           version: version ?? this.version,
@@ -35,11 +33,15 @@ abstract class $GitPackageDependency {
           path: path ?? this.path,
           resolvedRef: resolvedRef ?? this.resolvedRef,
           type: type ?? this.type);
+
   @override
   String toString() =>
       "GitPackageDependency(package: $package, version: $version, ref: $ref, url: $url, path: $path, resolvedRef: $resolvedRef, type: $type)";
+
   @override
-  bool operator ==(dynamic other) =>
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
+  bool operator ==(Object other) =>
+      other is GitPackageDependency &&
       other.runtimeType == runtimeType &&
       package == other.package &&
       version == other.version &&
@@ -48,7 +50,9 @@ abstract class $GitPackageDependency {
       path == other.path &&
       resolvedRef == other.resolvedRef &&
       type == other.type;
+
   @override
+  // ignore: avoid_equals_and_hash_code_on_mutable_classes
   int get hashCode {
     var result = 17;
     result = 37 * result + package.hashCode;
@@ -62,27 +66,50 @@ abstract class $GitPackageDependency {
   }
 }
 
+// ignore: avoid_classes_with_only_static_members
 class GitPackageDependency$ {
   static final package = Lens<GitPackageDependency, String>(
-      (s_) => s_.package, (s_, package) => s_.copyWith(package: package));
+    (packageContainer) => packageContainer.package,
+    (packageContainer, package) => packageContainer.copyWith(package: package),
+  );
+
   static final version = Lens<GitPackageDependency, String>(
-      (s_) => s_.version, (s_, version) => s_.copyWith(version: version));
+    (versionContainer) => versionContainer.version,
+    (versionContainer, version) => versionContainer.copyWith(version: version),
+  );
+
   static final ref = Lens<GitPackageDependency, String>(
-      (s_) => s_.ref, (s_, ref) => s_.copyWith(ref: ref));
+    (refContainer) => refContainer.ref,
+    (refContainer, ref) => refContainer.copyWith(ref: ref),
+  );
+
   static final url = Lens<GitPackageDependency, String>(
-      (s_) => s_.url, (s_, url) => s_.copyWith(url: url));
+    (urlContainer) => urlContainer.url,
+    (urlContainer, url) => urlContainer.copyWith(url: url),
+  );
+
   static final path = Lens<GitPackageDependency, String>(
-      (s_) => s_.path, (s_, path) => s_.copyWith(path: path));
+    (pathContainer) => pathContainer.path,
+    (pathContainer, path) => pathContainer.copyWith(path: path),
+  );
+
   static final resolvedRef = Lens<GitPackageDependency, String>(
-      (s_) => s_.resolvedRef,
-      (s_, resolvedRef) => s_.copyWith(resolvedRef: resolvedRef));
+    (resolvedRefContainer) => resolvedRefContainer.resolvedRef,
+    (resolvedRefContainer, resolvedRef) =>
+        resolvedRefContainer.copyWith(resolvedRef: resolvedRef),
+  );
+
   static final type = Lens<GitPackageDependency, DependencyType>(
-      (s_) => s_.type, (s_, type) => s_.copyWith(type: type));
+    (typeContainer) => typeContainer.type,
+    (typeContainer, type) => typeContainer.copyWith(type: type),
+  );
 }
 
 // ignore_for_file: always_put_required_named_parameters_first
 // ignore_for_file: avoid_annotating_with_dynamic
+// ignore_for_file: avoid_dynamic_calls
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
+// ignore_for_file: duplicate_ignore
 // ignore_for_file: lines_longer_than_80_chars
 // ignore_for_file: prefer_asserts_with_message
 // ignore_for_file: prefer_expression_function_bodies

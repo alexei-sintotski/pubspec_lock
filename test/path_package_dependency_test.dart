@@ -97,5 +97,6 @@ bool isPathDependency(PackageDependency dependency) => dependency.iswitcho(
 PathPackageDependency pathPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       path: (d) => d,
-      otherwise: () => null,
+      otherwise: () =>
+          throw AssertionError('Expected PathPackageDependency: $dependency'),
     );

@@ -105,5 +105,6 @@ bool isGitDependency(PackageDependency dependency) => dependency.iswitcho(
 GitPackageDependency gitPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       git: (d) => d,
-      otherwise: () => null,
+      otherwise: () =>
+          throw AssertionError('Expected GitPackageDependency: $dependency'),
     );

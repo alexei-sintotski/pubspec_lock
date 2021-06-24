@@ -97,5 +97,6 @@ bool isHostedDependency(PackageDependency dependency) => dependency.iswitcho(
 HostedPackageDependency hostedPackageDependency(PackageDependency dependency) =>
     dependency.iswitcho(
       hosted: (d) => d,
-      otherwise: () => null,
+      otherwise: () =>
+          throw AssertionError('Expected HostedPackageDependency: $dependency'),
     );

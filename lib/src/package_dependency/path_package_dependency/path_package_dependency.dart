@@ -38,11 +38,11 @@ part 'path_package_dependency.g.dart';
 class PathPackageDependency extends $PathPackageDependency {
   /// Default constructor
   const PathPackageDependency({
-    @required this.package,
-    @required this.version,
-    @required this.path,
-    @required this.relative,
-    @required this.type,
+    required this.package,
+    required this.version,
+    required this.path,
+    required this.relative,
+    required this.type,
   });
 
   final String package;
