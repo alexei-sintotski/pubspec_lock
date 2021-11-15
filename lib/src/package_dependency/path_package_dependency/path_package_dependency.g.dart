@@ -15,18 +15,39 @@ abstract class $PathPackageDependency {
   bool get relative;
   DependencyType get type;
 
-  PathPackageDependency copyWith(
-          {String? package,
-          String? version,
-          String? path,
-          bool? relative,
-          DependencyType? type}) =>
+  PathPackageDependency copyWith({
+    String? package,
+    String? version,
+    String? path,
+    bool? relative,
+    DependencyType? type,
+  }) =>
       PathPackageDependency(
-          package: package ?? this.package,
-          version: version ?? this.version,
-          path: path ?? this.path,
-          relative: relative ?? this.relative,
-          type: type ?? this.type);
+        package: package ?? this.package,
+        version: version ?? this.version,
+        path: path ?? this.path,
+        relative: relative ?? this.relative,
+        type: type ?? this.type,
+      );
+
+  PathPackageDependency copyUsing(
+      void Function(PathPackageDependency$Change change) mutator) {
+    final change = PathPackageDependency$Change._(
+      this.package,
+      this.version,
+      this.path,
+      this.relative,
+      this.type,
+    );
+    mutator(change);
+    return PathPackageDependency(
+      package: change.package,
+      version: change.version,
+      path: change.path,
+      relative: change.relative,
+      type: change.type,
+    );
+  }
 
   @override
   String toString() =>
@@ -54,6 +75,22 @@ abstract class $PathPackageDependency {
     result = 37 * result + type.hashCode;
     return result;
   }
+}
+
+class PathPackageDependency$Change {
+  PathPackageDependency$Change._(
+    this.package,
+    this.version,
+    this.path,
+    this.relative,
+    this.type,
+  );
+
+  String package;
+  String version;
+  String path;
+  bool relative;
+  DependencyType type;
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -95,4 +132,5 @@ class PathPackageDependency$ {
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: unnecessary_this
 // ignore_for_file: unused_element

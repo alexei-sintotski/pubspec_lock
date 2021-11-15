@@ -35,9 +35,9 @@ extension DependencyTypeToJson on DependencyType {
   String format() {
     switch (this) {
       case DependencyType.direct:
-        return '"${_Tokens.directMain}"';
+        return _Tokens.directMain;
       case DependencyType.development:
-        return '"${_Tokens.directDev}"';
+        return _Tokens.directDev;
       case DependencyType.transitive:
         return _Tokens.transitive;
     }

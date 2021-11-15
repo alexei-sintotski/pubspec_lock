@@ -17,22 +17,47 @@ abstract class $GitPackageDependency {
   String get resolvedRef;
   DependencyType get type;
 
-  GitPackageDependency copyWith(
-          {String? package,
-          String? version,
-          String? ref,
-          String? url,
-          String? path,
-          String? resolvedRef,
-          DependencyType? type}) =>
+  GitPackageDependency copyWith({
+    String? package,
+    String? version,
+    String? ref,
+    String? url,
+    String? path,
+    String? resolvedRef,
+    DependencyType? type,
+  }) =>
       GitPackageDependency(
-          package: package ?? this.package,
-          version: version ?? this.version,
-          ref: ref ?? this.ref,
-          url: url ?? this.url,
-          path: path ?? this.path,
-          resolvedRef: resolvedRef ?? this.resolvedRef,
-          type: type ?? this.type);
+        package: package ?? this.package,
+        version: version ?? this.version,
+        ref: ref ?? this.ref,
+        url: url ?? this.url,
+        path: path ?? this.path,
+        resolvedRef: resolvedRef ?? this.resolvedRef,
+        type: type ?? this.type,
+      );
+
+  GitPackageDependency copyUsing(
+      void Function(GitPackageDependency$Change change) mutator) {
+    final change = GitPackageDependency$Change._(
+      this.package,
+      this.version,
+      this.ref,
+      this.url,
+      this.path,
+      this.resolvedRef,
+      this.type,
+    );
+    mutator(change);
+    return GitPackageDependency(
+      package: change.package,
+      version: change.version,
+      ref: change.ref,
+      url: change.url,
+      path: change.path,
+      resolvedRef: change.resolvedRef,
+      type: change.type,
+    );
+  }
 
   @override
   String toString() =>
@@ -64,6 +89,26 @@ abstract class $GitPackageDependency {
     result = 37 * result + type.hashCode;
     return result;
   }
+}
+
+class GitPackageDependency$Change {
+  GitPackageDependency$Change._(
+    this.package,
+    this.version,
+    this.ref,
+    this.url,
+    this.path,
+    this.resolvedRef,
+    this.type,
+  );
+
+  String package;
+  String version;
+  String ref;
+  String url;
+  String path;
+  String resolvedRef;
+  DependencyType type;
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -115,4 +160,5 @@ class GitPackageDependency$ {
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: unnecessary_this
 // ignore_for_file: unused_element

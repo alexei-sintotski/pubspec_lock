@@ -48,7 +48,7 @@ extension GitPackageDependencyToJson on GitPackageDependency {
         package: <String, dynamic>{
           _Tokens.dependency: type.format(),
           _Tokens.description: <String, dynamic>{
-            _Tokens.path: '"$path"',
+            _Tokens.path: path,
             _Tokens.ref: ref,
             _Tokens.resolvedRef: '"$resolvedRef"',
             _Tokens.url: url,
