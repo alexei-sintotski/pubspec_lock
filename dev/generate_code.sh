@@ -1,4 +1,4 @@
-#!/bin/bash -ex
+#!/bin/bash -e
 
 find . -name '*.g.dart' | xargs rm -f
 pub run build_runner build "$@"

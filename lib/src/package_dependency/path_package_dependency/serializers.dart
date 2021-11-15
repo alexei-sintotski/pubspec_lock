@@ -48,7 +48,7 @@ extension PathPackageDependencyToJson on PathPackageDependency {
         package: <String, dynamic>{
           _Tokens.dependency: type.format(),
           _Tokens.description: <String, dynamic>{
-            _Tokens.path: '"$path"',
+            _Tokens.path: path,
             _Tokens.relative: relative,
           },
           _Tokens.source: _Tokens.path,

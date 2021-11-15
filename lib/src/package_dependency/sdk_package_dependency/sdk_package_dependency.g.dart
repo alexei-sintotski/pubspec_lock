@@ -14,16 +14,35 @@ abstract class $SdkPackageDependency {
   String get description;
   DependencyType get type;
 
-  SdkPackageDependency copyWith(
-          {String? package,
-          String? version,
-          String? description,
-          DependencyType? type}) =>
+  SdkPackageDependency copyWith({
+    String? package,
+    String? version,
+    String? description,
+    DependencyType? type,
+  }) =>
       SdkPackageDependency(
-          package: package ?? this.package,
-          version: version ?? this.version,
-          description: description ?? this.description,
-          type: type ?? this.type);
+        package: package ?? this.package,
+        version: version ?? this.version,
+        description: description ?? this.description,
+        type: type ?? this.type,
+      );
+
+  SdkPackageDependency copyUsing(
+      void Function(SdkPackageDependency$Change change) mutator) {
+    final change = SdkPackageDependency$Change._(
+      this.package,
+      this.version,
+      this.description,
+      this.type,
+    );
+    mutator(change);
+    return SdkPackageDependency(
+      package: change.package,
+      version: change.version,
+      description: change.description,
+      type: change.type,
+    );
+  }
 
   @override
   String toString() =>
@@ -49,6 +68,20 @@ abstract class $SdkPackageDependency {
     result = 37 * result + type.hashCode;
     return result;
   }
+}
+
+class SdkPackageDependency$Change {
+  SdkPackageDependency$Change._(
+    this.package,
+    this.version,
+    this.description,
+    this.type,
+  );
+
+  String package;
+  String version;
+  String description;
+  DependencyType type;
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -85,4 +118,5 @@ class SdkPackageDependency$ {
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: unnecessary_this
 // ignore_for_file: unused_element

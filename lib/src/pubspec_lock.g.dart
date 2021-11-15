@@ -12,10 +12,26 @@ abstract class $PubspecLock {
   Iterable<SdkDependency> get sdks;
   Iterable<PackageDependency> get packages;
 
-  PubspecLock copyWith(
-          {Iterable<SdkDependency>? sdks,
-          Iterable<PackageDependency>? packages}) =>
-      PubspecLock(sdks: sdks ?? this.sdks, packages: packages ?? this.packages);
+  PubspecLock copyWith({
+    Iterable<SdkDependency>? sdks,
+    Iterable<PackageDependency>? packages,
+  }) =>
+      PubspecLock(
+        sdks: sdks ?? this.sdks,
+        packages: packages ?? this.packages,
+      );
+
+  PubspecLock copyUsing(void Function(PubspecLock$Change change) mutator) {
+    final change = PubspecLock$Change._(
+      this.sdks,
+      this.packages,
+    );
+    mutator(change);
+    return PubspecLock(
+      sdks: change.sdks,
+      packages: change.packages,
+    );
+  }
 
   @override
   String toString() => "PubspecLock(sdks: $sdks, packages: $packages)";
@@ -36,6 +52,16 @@ abstract class $PubspecLock {
     result = 37 * result + packages.hashCode;
     return result;
   }
+}
+
+class PubspecLock$Change {
+  PubspecLock$Change._(
+    this.sdks,
+    this.packages,
+  );
+
+  Iterable<SdkDependency> sdks;
+  Iterable<PackageDependency> packages;
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -62,4 +88,5 @@ class PubspecLock$ {
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: unnecessary_this
 // ignore_for_file: unused_element

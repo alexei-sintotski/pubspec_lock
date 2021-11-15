@@ -12,8 +12,26 @@ abstract class $SdkDependency {
   String get sdk;
   String get version;
 
-  SdkDependency copyWith({String? sdk, String? version}) =>
-      SdkDependency(sdk: sdk ?? this.sdk, version: version ?? this.version);
+  SdkDependency copyWith({
+    String? sdk,
+    String? version,
+  }) =>
+      SdkDependency(
+        sdk: sdk ?? this.sdk,
+        version: version ?? this.version,
+      );
+
+  SdkDependency copyUsing(void Function(SdkDependency$Change change) mutator) {
+    final change = SdkDependency$Change._(
+      this.sdk,
+      this.version,
+    );
+    mutator(change);
+    return SdkDependency(
+      sdk: change.sdk,
+      version: change.version,
+    );
+  }
 
   @override
   String toString() => "SdkDependency(sdk: $sdk, version: $version)";
@@ -34,6 +52,16 @@ abstract class $SdkDependency {
     result = 37 * result + version.hashCode;
     return result;
   }
+}
+
+class SdkDependency$Change {
+  SdkDependency$Change._(
+    this.sdk,
+    this.version,
+  );
+
+  String sdk;
+  String version;
 }
 
 // ignore: avoid_classes_with_only_static_members
@@ -59,4 +87,5 @@ class SdkDependency$ {
 // ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
+// ignore_for_file: unnecessary_this
 // ignore_for_file: unused_element
