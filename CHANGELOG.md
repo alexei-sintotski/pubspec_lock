@@ -1,3 +1,6 @@
+## [3.0.1] - Up-to-date dependencies
+* Migration to json2yaml 3.0
+
 ## [3.0.0] - Null safety
 * Kudos to https://github.com/spkersten for help!
 
