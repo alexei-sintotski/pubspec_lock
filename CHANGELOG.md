@@ -1,3 +1,6 @@
+## [3.0.2] - 2022-04-01
+* Fixed dependency type `direct overriden`
+
 ## [3.0.1] - Up-to-date dependencies
 * Migration to json2yaml 3.0
 
