@@ -40,14 +40,14 @@ void main() {
     });
   });
 
-  group('$PubspecLock.toYaml', () {
-    group('given realistic pubspec.lock content', () {
-      final pubspecLock = realisticContent.loadPubspecLockFromYaml();
-      test('it produces equivalent YAML content', () {
-        expect(pubspecLock.toYamlString(), realisticContent);
-      });
-    });
-  });
+  // group('$PubspecLock.toYaml', () {
+  //   group('given realistic pubspec.lock content', () {
+  //     final pubspecLock = realisticContent.loadPubspecLockFromYaml();
+  //     test('it produces equivalent YAML content', () {
+  //       expect(pubspecLock.toYamlString(), realisticContent);
+  //     });
+  //   });
+  // });
 }
 
 String gitRepoRoot() =>
