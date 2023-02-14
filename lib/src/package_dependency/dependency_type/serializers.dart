@@ -38,6 +38,8 @@ extension DependencyTypeToJson on DependencyType {
         return _Tokens.directMain;
       case DependencyType.development:
         return _Tokens.directDev;
+      case DependencyType.override:
+        return _Tokens.directDev;
       case DependencyType.transitive:
         return _Tokens.transitive;
     }
@@ -47,11 +49,13 @@ extension DependencyTypeToJson on DependencyType {
 const _dependencyTypeMap = <String, DependencyType>{
   _Tokens.directMain: DependencyType.direct,
   _Tokens.directDev: DependencyType.development,
+  _Tokens.directOverride: DependencyType.override,
   _Tokens.transitive: DependencyType.transitive,
 };
 
 class _Tokens {
   static const directMain = 'direct main';
   static const directDev = 'direct dev';
+  static const directOverride = 'direct overridden';
   static const transitive = 'transitive';
 }
