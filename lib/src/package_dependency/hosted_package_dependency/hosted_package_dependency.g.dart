@@ -13,6 +13,7 @@ abstract class $HostedPackageDependency {
   String get version;
   String get name;
   String get url;
+  String? get sha256;
   DependencyType get type;
 
   HostedPackageDependency copyWith({
@@ -20,6 +21,7 @@ abstract class $HostedPackageDependency {
     String? version,
     String? name,
     String? url,
+    String? sha256,
     DependencyType? type,
   }) =>
       HostedPackageDependency(
@@ -27,6 +29,7 @@ abstract class $HostedPackageDependency {
         version: version ?? this.version,
         name: name ?? this.name,
         url: url ?? this.url,
+        sha256: sha256 ?? this.sha256,
         type: type ?? this.type,
       );
 
@@ -37,6 +40,7 @@ abstract class $HostedPackageDependency {
       this.version,
       this.name,
       this.url,
+      this.sha256,
       this.type,
     );
     mutator(change);
@@ -45,13 +49,14 @@ abstract class $HostedPackageDependency {
       version: change.version,
       name: change.name,
       url: change.url,
+      sha256: change.sha256,
       type: change.type,
     );
   }
 
   @override
   String toString() =>
-      "HostedPackageDependency(package: $package, version: $version, name: $name, url: $url, type: $type)";
+      "HostedPackageDependency(package: $package, version: $version, name: $name, url: $url, sha256: $sha256, type: $type)";
 
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
@@ -62,6 +67,7 @@ abstract class $HostedPackageDependency {
       version == other.version &&
       name == other.name &&
       url == other.url &&
+      sha256 == other.sha256 &&
       type == other.type;
 
   @override
@@ -72,6 +78,7 @@ abstract class $HostedPackageDependency {
     result = 37 * result + version.hashCode;
     result = 37 * result + name.hashCode;
     result = 37 * result + url.hashCode;
+    result = 37 * result + sha256.hashCode;
     result = 37 * result + type.hashCode;
     return result;
   }
@@ -83,6 +90,7 @@ class HostedPackageDependency$Change {
     this.version,
     this.name,
     this.url,
+    this.sha256,
     this.type,
   );
 
@@ -90,6 +98,7 @@ class HostedPackageDependency$Change {
   String version;
   String name;
   String url;
+  String? sha256;
   DependencyType type;
 }
 
@@ -113,6 +122,11 @@ class HostedPackageDependency$ {
   static final url = Lens<HostedPackageDependency, String>(
     (urlContainer) => urlContainer.url,
     (urlContainer, url) => urlContainer.copyWith(url: url),
+  );
+
+  static final sha256 = Lens<HostedPackageDependency, String?>(
+    (sha256Container) => sha256Container.sha256,
+    (sha256Container, sha256) => sha256Container.copyWith(sha256: sha256),
   );
 
   static final type = Lens<HostedPackageDependency, DependencyType>(

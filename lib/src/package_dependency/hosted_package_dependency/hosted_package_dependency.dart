@@ -43,6 +43,7 @@ class HostedPackageDependency extends $HostedPackageDependency {
     required this.name,
     required this.url,
     required this.type,
+    this.sha256,
   });
 
   final String package;
@@ -50,5 +51,10 @@ class HostedPackageDependency extends $HostedPackageDependency {
 
   final String name;
   final String url;
+
+  /// Added in dart 2.19
+  /// Keeping it nullable for backwards compatibility
+  final String? sha256;
+
   final DependencyType type;
 }
