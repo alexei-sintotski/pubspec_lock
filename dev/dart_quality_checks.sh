@@ -2,7 +2,7 @@
 
 dart example/main.dart
 
-dartanalyzer --fatal-hints .
+dart analyze --fatal-infos .
 dart run test
 dart run dependency_validator
 dev/format_dart_code.sh --set-exit-if-changed

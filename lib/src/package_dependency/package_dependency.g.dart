@@ -6,6 +6,7 @@ part of 'package_dependency.dart';
 // SumTypesGenerator
 // **************************************************************************
 
+// ignore_for_file: unused_element
 abstract class _$PackageDependency {
   const _$PackageDependency({
     this.sdk,
@@ -52,15 +53,13 @@ abstract class _$PackageDependency {
       PathPackageDependency? path,
     })
         make,
-  ) {
-    return iswitch(
-      sdk: (sdk) => make(sdk: sdk),
-      hosted: (hosted) => make(hosted: hosted),
-      git: (git) => make(git: git),
-      path: (path) => make(path: path),
-    );
-  }
-
+  ) =>
+      iswitch(
+        sdk: (sdk) => make(sdk: sdk),
+        hosted: (hosted) => make(hosted: hosted),
+        git: (git) => make(git: git),
+        path: (path) => make(path: path),
+      );
   $T iswitch<$T>({
     required $T Function(SdkPackageDependency) sdk,
     required $T Function(HostedPackageDependency) hosted,
@@ -82,11 +81,11 @@ abstract class _$PackageDependency {
   }
 
   $T iswitcho<$T>({
+    required $T Function() otherwise,
     $T Function(SdkPackageDependency)? sdk,
     $T Function(HostedPackageDependency)? hosted,
     $T Function(GitPackageDependency)? git,
     $T Function(PathPackageDependency)? path,
-    required $T Function() otherwise,
   }) {
     $T _otherwise(Object? _) => otherwise();
     return iswitch(
@@ -99,15 +98,14 @@ abstract class _$PackageDependency {
 
   @override
   bool operator ==(
-    dynamic other,
-  ) {
-    return other.runtimeType == runtimeType &&
-        other.sdk == sdk &&
-        other.hosted == hosted &&
-        other.git == git &&
-        other.path == path;
-  }
-
+    Object other,
+  ) =>
+      other.runtimeType == runtimeType &&
+      other is PackageDependency &&
+      other.sdk == sdk &&
+      other.hosted == hosted &&
+      other.git == git &&
+      other.path == path;
   @override
   int get hashCode {
     var result = 17;
@@ -146,15 +144,11 @@ abstract class PackageDependencyRecordBase<Self> {
   PathPackageDependency? get path;
 }
 
-// ignore_for_file: always_put_required_named_parameters_first
-// ignore_for_file: avoid_annotating_with_dynamic
-// ignore_for_file: avoid_dynamic_calls
 // ignore_for_file: avoid_equals_and_hash_code_on_mutable_classes
 // ignore_for_file: duplicate_ignore
 // ignore_for_file: lines_longer_than_80_chars
+// ignore_for_file: no_leading_underscores_for_local_identifiers
 // ignore_for_file: prefer_asserts_with_message
-// ignore_for_file: prefer_expression_function_bodies
 // ignore_for_file: prefer_single_quotes
 // ignore_for_file: public_member_api_docs
 // ignore_for_file: unnecessary_this
-// ignore_for_file: unused_element
