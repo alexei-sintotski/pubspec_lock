@@ -34,11 +34,15 @@ HostedPackageDependency loadHostedPackageDependency(
 ) {
   final definition = entry.value as Map<String, dynamic>;
   final description = definition[_Tokens.description] as Map<String, dynamic>;
+  final sha256 = (description[_Tokens.sha256] is String)
+      ? description[_Tokens.sha256] as String
+      : null;
   return HostedPackageDependency(
     package: entry.key,
     version: definition[_Tokens.version] as String,
     name: description[_Tokens.name] as String,
     url: description[_Tokens.url] as String,
+    sha256: sha256,
     type: (definition[_Tokens.dependency] as String).parseDependencyType(),
   );
 }
@@ -49,6 +53,7 @@ extension HostedPackageDependencyToJson on HostedPackageDependency {
           _Tokens.dependency: type.format(),
           _Tokens.description: <String, dynamic>{
             _Tokens.name: name,
+            if (sha256 != null) _Tokens.sha256: sha256,
             _Tokens.url: url,
           },
           _Tokens.source: _Tokens.hosted,
@@ -65,4 +70,5 @@ class _Tokens {
   static const dependency = 'dependency';
   static const name = 'name';
   static const url = 'url';
+  static const sha256 = 'sha256';
 }
