@@ -1,3 +1,6 @@
+## [3.0.3] - Added support for direct overridden dependency
+* Added support for "direct overridden" dependency (there when "depedency_overrides" is used in pubspec.yaml file)
+
 ## [3.0.2] - Up-to-date dependencies
 * Migration to json2yaml 3.0.1 - Contains fixes for missing double quotes
 * Added support to sha256 in hosted dependencies introduced in dart 2.19
